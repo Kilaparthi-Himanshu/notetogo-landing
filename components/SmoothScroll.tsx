@@ -1,4 +1,3 @@
-// components/SmoothScroll.tsx
 'use client';
 
 import { useEffect } from 'react';
@@ -6,7 +5,11 @@ import Lenis from '@studio-freight/lenis';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-export default function SmoothScroll({ children }: { children: React.ReactNode }) {
+export default function SmoothScroll({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
@@ -15,14 +18,15 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
       smoothWheel: true,
     });
 
+    let rafId: number;
+
     function raf(time: number) {
       lenis.raf(time);
-      requestAnimationFrame(raf);
+      rafId = requestAnimationFrame(raf);
     }
 
-    requestAnimationFrame(raf);
+    rafId = requestAnimationFrame(raf);
 
-    // Sync ScrollTrigger with Lenis scroll
     lenis.on('scroll', ScrollTrigger.update);
 
     ScrollTrigger.scrollerProxy(document.body, {
@@ -30,19 +34,32 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
         if (value !== undefined) {
           lenis.scrollTo(value);
         }
+
         return window.scrollY;
       },
+
       getBoundingClientRect() {
-        return { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight };
+        return {
+          top: 0,
+          left: 0,
+          width: window.innerWidth,
+          height: window.innerHeight,
+        };
       },
-      pinType: document.body.style.transform ? 'transform' : 'fixed',
+
+      pinType: document.body.style.transform
+        ? 'transform'
+        : 'fixed',
     });
 
     ScrollTrigger.refresh();
 
     return () => {
+      cancelAnimationFrame(rafId);
+
       lenis.destroy();
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+
+      ScrollTrigger.getAll().forEach((t) => t.kill());
     };
   }, []);
 

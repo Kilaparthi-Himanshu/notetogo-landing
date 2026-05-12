@@ -1,3 +1,4 @@
+import { Features } from "@/components/Features";
 import Info from "@/components/Info";
 import Opening from "@/components/Opening";
 import SmoothScroll from "@/components/SmoothScroll";
@@ -14,9 +15,11 @@ export default function Home() {
 
 				<Info />
 
-				<div className="h-dvh bg-neutral-900">
+				{/* <div className="h-dvh bg-neutral-900">
 
-				</div>
+				</div> */}
+
+				<Features />
       </SmoothScroll>
     </>
   );

@@ -22,7 +22,7 @@ const Opening = () => {
     });
 
     tl.from('#light-note', {
-      scale: 2.2,
+      scale: 3.2,
       ease: 'power1.inOut'
     });
 

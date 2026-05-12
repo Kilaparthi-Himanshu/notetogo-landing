@@ -126,7 +126,7 @@ const Info = () => {
             </span>
 
             <span className='text-2xl text-white'>
-              NoteToGo is a lightweight, distraction-free note-taking extension that lets you jot ideas instantly while browsing. Capture thoughts, links, and snippets without switching tabs — everything stays right where you need it.
+              NoteToGo is a lightweight, distraction-free note-taking extension that lets you jot ideas instantly while browsing. Capture thoughts, links, and snippets without switching tabs - everything stays right where you need it.
             </span>
           </div>
         </div>
