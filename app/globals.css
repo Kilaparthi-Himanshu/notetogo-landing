@@ -1,26 +1,87 @@
 @import "tailwindcss";
+@plugin "@toolwind/corner-shape";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+.dropdownCard {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 37px;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    font-family: Arial;
+    font-size: 18px;
+    border-radius: 8px;
+    transition: box-shadow 0.2s ease-in;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+.dropdownCard > *:first-child {
+    margin-left: 10px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.dropdownCard > *:last-child {
+    margin-right: 10px;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.dropdownCard:hover {
+    background-color: #3D3D3D;
+}
+
+.themeToggle {
+    position: relative;
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    z-index: 1;
+    padding: 2px 4px;
+    border-radius: 3px;
+}
+
+.themeButton {
+    background: none;
+    border: 2px solid transparent;
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 1px;
+    transition: all 0.1s ease;
+    font-size: 14px;
+}
+
+.themeButton:hover {
+    transform: scale(1.1);
+}
+
+.themeButton.active {
+    border-color: #007bff;
+}
+
+.colorSelector {
+    all: unset;
+    border: none;
+    border-radius: 5px;
+    height: 30px;
+    width: 40px;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 1px;
+    padding-left: 4px;
+    padding-right: 4px;
+    position: relative;
+    transition: transform 0.1s ease-in;
+}
+
+.pinsContainer {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 3px 5px;
+    width: 27px;
+    height: 27px;
+    justify-content: center;  /* Center horizontally */
+    border-radius: 3px;
+    font-size: 12px;
+    backdrop-filter: blur(2px);       /* Optional: adds frosted glass effect */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);  /* Subtle shadow */
+    flex-direction: row;
+    transition: transform 0.1s ease-in;
 }
