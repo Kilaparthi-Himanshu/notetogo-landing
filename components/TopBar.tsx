@@ -4,6 +4,7 @@ import { navAtom } from "@/app/atoms";
 import { useAtom } from "jotai";
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import { RiArrowRightUpLongFill } from "react-icons/ri";
 
 function TopBar() {
 	const [nav, setNav] = useAtom(navAtom);
@@ -51,27 +52,40 @@ function TopBar() {
 			}}
 		>
 			<button 
-				className={`bg-neutral-100 rounded-4xl corner-squircle w-[100px] text-center text-black text-md cursor-pointer transition-all ${nav === "home" && "bg-neutral-300"}`}
+				className={`bg-neutral-100 rounded-4xl corner-squircle px-2 min-w-max w-full text-center text-black text-md cursor-pointer transition-all ${nav === "home" && "bg-neutral-300"}`}
 				onClick={() => setNav("home")}
 			>
 				Home
 			</button>
 
 			<button 
-				className={`bg-neutral-100 rounded-4xl corner-squircle w-[100px] text-center text-black text-md cursor-pointer transition-all ${nav === "features" && "bg-neutral-300"}`}
+				className={`bg-neutral-100 rounded-4xl corner-squircle px-2 min-w-max w-full text-center text-black text-md cursor-pointer transition-all ${nav === "features" && "bg-neutral-300"}`}
 				onClick={() => setNav("features")}
 			>
 				Features
 			</button>
 
 			<button 
-				className={`bg-neutral-100 rounded-4xl corner-squircle w-[100px] text-center text-black text-md cursor-pointer transition-all ${nav === "pricing" && "bg-neutral-300"}`}
+				className={`bg-neutral-100 rounded-4xl corner-squircle px-2 min-w-max w-full text-center text-black text-md cursor-pointer transition-all ${nav === "pricing" && "bg-neutral-300"}`}
 				onClick={() => setNav("pricing")}
 			>
 				Pricing
 			</button>
 
-			<img src="icon.png" alt="NoteToGo" className="ml-auto" />
+			<button 
+				className={`bg-neutral-100 rounded-4xl corner-squircle px-2 min-w-max w-full text-center text-black text-md cursor-pointer transition-all ${nav === "contact" && "bg-neutral-300"}`}
+				onClick={() => setNav("contact")}
+			>
+				Contact
+			</button>
+
+			<button 
+				className={`bg-neutral-100 rounded-4xl corner-squircle px-2 min-w-max w-full text-center text-black text-md cursor-pointer transition-all flex items-center justify-center gap-2`}
+			>
+				Add to chrome <RiArrowRightUpLongFill />
+			</button>
+
+			{/* <img src="icon.png" alt="NoteToGo" className="ml-auto" /> */}
 		</motion.div>
 	);
 }
