@@ -2,9 +2,23 @@ import { Check, Minimize, X } from "lucide-react";
 import { RiMenu2Line } from "react-icons/ri";
 import TrafficLights from "./TrafficLights";
 
-export const LightNote = ({ children }: { children?: React.ReactNode }) => {
+export const LightNote = ({ 
+	width=710,
+  height=480, 
+	children 
+}: { 
+		width?: number,
+		height?: number,
+		children?: React.ReactNode 
+	}) => {
   return (
-    <div className='w-[710px] h-[480px] bg-white rounded-[15px] flex overflow-clip shadow-[0px_0px_6px_hsla(0,0%,0%,0.527)] relative' id='light-note'>
+    <div 
+			className='bg-white rounded-[15px] flex overflow-clip shadow-[0px_0px_6px_hsla(0,0%,0%,0.527)] relative' id='light-note' 
+			style={{
+				width: width,
+				height: height
+			}}
+		>
       {children}
 
       <div className='w-full h-[35px] bg-[#D9D9D9] relative'>

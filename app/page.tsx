@@ -2,6 +2,7 @@ import { Features } from "@/components/Features";
 import Info from "@/components/Info";
 import Opening from "@/components/Opening";
 import SmoothScroll from "@/components/SmoothScroll";
+import SyncShowcase from "@/components/SyncShowcase";
 import TopBar from "@/components/TopBar";
 
 export default function Home() {
@@ -15,11 +16,9 @@ export default function Home() {
 
 				<Info />
 
-				{/* <div className="h-dvh bg-neutral-900">
-
-				</div> */}
-
 				<Features />
+
+				<SyncShowcase />
       </SmoothScroll>
     </>
   );
