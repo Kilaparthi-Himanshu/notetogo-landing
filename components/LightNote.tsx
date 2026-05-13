@@ -5,15 +5,18 @@ import TrafficLights from "./TrafficLights";
 export const LightNote = ({ 
 	width=710,
   height=480, 
+	className,
 	children 
 }: { 
 		width?: number,
 		height?: number,
+		className?: string
 		children?: React.ReactNode 
 	}) => {
   return (
     <div 
-			className='bg-white rounded-[15px] flex overflow-clip shadow-[0px_0px_6px_hsla(0,0%,0%,0.527)] relative' id='light-note' 
+			className={`bg-white rounded-[15px] flex overflow-clip shadow-[0px_0px_6px_hsla(0,0%,0%,0.527)] relative ${className}`} 
+			id='light-note' 
 			style={{
 				width: width,
 				height: height

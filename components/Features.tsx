@@ -14,10 +14,17 @@ export const Features = () => {
 		gsap.timeline({
 			scrollTrigger: {
         trigger: '.features',
-        start: 'top center-=60',
+        start: 'top center-=100',
         end: 'top top',
 				// toggleActions: 'play reverse play reverse',
 				scrub: true,
+				// snap: {
+				// 	snapTo: 1,
+				// 	duration: 0.35,
+				// 	delay: 0,
+				// 	ease: 'power2.out',
+				// 	inertia: false
+				// },
         markers: false
       }
 		}).from(".line", {
@@ -39,13 +46,13 @@ export const Features = () => {
         markers: false
       }
 		}).from(".card", {
-			opacity: 0,	
+			opacity: 0,
 			duration: 1
 		});
 	});
 
 	return (
-		<section className='bg-change min-h-[80vh] max-md:min-h-max bg-neutral-900 flex features max-md:flex-col'>
+		<section className='bg-change min-h-[100vh] max-md:min-h-max bg-neutral-900 flex features max-md:flex-col'>
 			<div className='relative flex-1 flex items-center justify-center'>
 				<div className='max-md:hidden absolute bottom-0 right-0 h-[60%] w-[2px] bg-neutral-500 line' />
 
@@ -92,5 +99,5 @@ export const Features = () => {
 				</div>
 			</div>
 		</section>
-	)
+	);
 }

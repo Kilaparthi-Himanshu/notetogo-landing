@@ -104,7 +104,7 @@ const DarkNoteOptions = () => {
 							</div>
 
 							<div>
-									<div title="Pin Note" className="pinsContainer">
+									<div title="Password" className="pinsContainer">
 											<Lock style={{color: "#00C2FF"}}/>
 									</div>
 							</div>
@@ -116,7 +116,7 @@ const DarkNoteOptions = () => {
 							</div>
 
 							<div>
-									<div title="Pin Note" className="pinsContainer">
+									<div title="Sync Note" className="pinsContainer">
 											<IoMdCloudOutline size={24} style={{color: "#32D74B"}}/>
 									</div>
 							</div>
