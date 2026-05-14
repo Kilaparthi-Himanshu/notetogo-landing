@@ -15,7 +15,7 @@ export default function RichTextShowcase() {
 		gsap.timeline({
 			scrollTrigger: {
 				trigger: ".rich-note-container",
-				start: 'top center-=40',
+				start: 'top center-=60',
         end: 'top top',
 				// scrub: true,
 				markers: false,
@@ -31,7 +31,7 @@ export default function RichTextShowcase() {
 		gsap.timeline({
 			scrollTrigger: {
 				trigger: ".rich-note-container",
-				start: 'top center-=40',
+				start: 'top center-=60',
         end: 'top top',
 				// scrub: true,
 				markers: false,
@@ -79,6 +79,7 @@ export default function RichTextShowcase() {
 					<DarkNote width={530} height={450} className="">
 						<div 
 							className="absolute top-[35px] w-full h-[calc(100%-35px)] text-black text-wrap break-words text-lg"
+							data-lenis-prevent
 						>
 							<TipTapEditorDemo />
 						</div>

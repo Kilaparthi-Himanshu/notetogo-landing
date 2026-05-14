@@ -122,7 +122,7 @@ export default function TipTapEditorDemo() {
 		],
 		content: `
 			<h1 style="font-size:20px; color:white;">
-				<u>✨ Meeting Notes</u>
+				✨ <u>Meeting Notes</u>
 			</h1>
 
 			<p style="font-size:15px; color:white;">
@@ -209,7 +209,6 @@ console.log(note);</code></pre>
 			<EditorContent 
 				editor={editor}
 				className={`size-full border-0 outline-0 relative`}
-				data-lenis-prevent
 				style={{
 					minHeight: "100%",
 					minWidth: "100%",
