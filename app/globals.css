@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @plugin "@toolwind/corner-shape";
+@import 'highlight.js/styles/github-dark.css';
 
 .dropdownCard {
     display: flex;
@@ -84,4 +85,133 @@
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);  /* Subtle shadow */
     flex-direction: row;
     transition: transform 0.1s ease-in;
+}
+
+.textAreaContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;  /* This helps the textarea expand */
+    align-items: center;
+    justify-content: center;
+    /* padding: 10px; */
+    /* padding-bottom: 10px; */
+    overflow: hidden;
+    position: relative;
+}
+
+.textArea {
+    box-sizing: border-box;
+    border-radius: 5px;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    resize: none;  /* Optional: prevents textarea's own resize handle */
+    outline: none;
+    transition: border 0.2s ease;
+    font-weight: 400;
+}
+
+.textArea::-webkit-scrollbar {
+		width: 8px !important;  /* Width of vertical scrollbar */
+}
+
+.textArea::-webkit-scrollbar-track {
+		background: rgba(0, 0, 0, 0.1) !important;  /* Scrollbar track */
+		border-radius: 4px !important;
+}
+
+.textArea::-webkit-scrollbar-thumb {
+		background: rgba(0, 0, 0, 0.2) !important;  /* Scrollbar handle */
+		border-radius: 4px !important;
+}
+
+/* Hover effects */
+.textArea::-webkit-scrollbar-thumb:hover {
+		background: rgba(0, 0, 0, 0.3) !important;
+}
+
+.ProseMirror {
+	border: 0px;
+	outline: 0px;
+	padding: 8px 16px;
+
+	color: white;
+	font-size: 16px;
+	line-height: 1.7;
+	font-family: Inter, sans-serif;
+
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+ul li::marker {
+    color: inherit;
+    font-size: inherit;
+}
+
+/* Ordered list markers */
+ol li::marker {
+    color: inherit;
+    font-size: inherit;
+}
+
+.ProseMirror li {
+    color: inherit !important;
+    font-size: inherit !important;
+}
+
+.ProseMirror li::marker {
+    color: inherit !important;
+    font-size: inherit !important;
+}
+
+[data-node="image"][class*="ProseMirror-selectednode"] img {
+    box-shadow: 0 0 0 3px #a855f7 !important;
+}
+
+[data-node="image"] [data-resize-handle] {
+    width: 12px;
+    height: 12px;
+    background: white;
+    border: 2px solid #a855f7;
+    border-radius: 999px;
+    position: absolute;
+    z-index: 1000;
+}
+
+[data-resize-handle="top-left"] {
+    top: -6px !important;
+    left: -6px !important;
+    cursor: nwse-resize;
+}
+
+[data-resize-handle="top-right"] {
+    top: -6px !important;
+    right: -6px !important;
+    cursor: nesw-resize;
+}
+
+[data-resize-handle="bottom-left"] {
+    bottom: -6px !important;
+    left: -6px !important;
+    cursor: nesw-resize;
+}
+
+[data-resize-handle="bottom-right"] {
+    bottom: -6px !important;
+    right: -6px !important;
+    cursor: nwse-resize;
+}
+
+[data-node="image"] [data-resize-handle] {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease;
+}
+
+[data-node="image"]:hover [data-resize-handle],
+[data-node="image"][class*="ProseMirror-selectednode"] [data-resize-handle],
+[data-node="image"][data-resize-state="true"] [data-resize-handle] {
+    opacity: 1;
+    pointer-events: auto;
 }

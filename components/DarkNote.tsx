@@ -6,16 +6,18 @@ export const DarkNote = ({
   width=710,
   height=480,
   menuOpen=false,
+	className,
   children 
 }: { 
   width?: number;
   height?: number;
   menuOpen?: boolean;
-  children?: React.ReactNode 
+	className?: string;
+  children?: React.ReactNode;
 }) => {
   return (
     <div 
-      className='bg-[#262626] rounded-[15px] flex overflow-clip shadow-[0px_0px_6px_hsla(0,0%,0%,0.527)] relative' 
+      className={`bg-[#262626] rounded-[15px] flex overflow-clip shadow-[0px_0px_6px_hsla(0,0%,0%,0.527)] relative ${className}`} 
       id='dark-note'
       style={{
         width: width,
