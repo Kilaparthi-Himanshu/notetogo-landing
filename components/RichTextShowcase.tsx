@@ -2,9 +2,8 @@
 import { useGSAP } from "@gsap/react";
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
-import { LightNote } from "./LightNote";
 import { CgToolbarBottom } from "react-icons/cg";
-import { DarkNote } from "./DarkNote";
+import { Note } from "./Note";
 import TipTapEditorDemo from "./RichEditorDemo/TipTapEditorDemo";
 
 
@@ -76,14 +75,14 @@ export default function RichTextShowcase() {
 
 			<div className="w-full h-full relative ml-20 flex items-center justify-center">
 				<div className="rich-note">
-					<DarkNote width={530} height={450} className="">
+					<Note theme="dark" width={530} height={450} className="">
 						<div 
 							className="absolute top-[35px] w-full h-[calc(100%-35px)] text-black text-wrap break-words text-lg"
 							data-lenis-prevent
 						>
 							<TipTapEditorDemo />
 						</div>
-					</DarkNote>
+					</Note>
 				</div>
 			</div>
 		</section>

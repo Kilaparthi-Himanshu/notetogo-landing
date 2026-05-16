@@ -2,7 +2,7 @@
 import { useGSAP } from "@gsap/react";
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
-import { LightNote } from "./LightNote";
+import { Note } from "./Note";
 import { IoMdCloudOutline } from "react-icons/io";
 import { useRef, useState } from "react";
 
@@ -70,7 +70,7 @@ export default function SyncShowcase() {
 		<section className='notes-container min-h-[100vh] max-md:min-h-max bg-neutral-900 max-md:flex-col p-2 py-14 flex items-center justify-center'>
 			<div className="w-full h-full relative ml-20">
 				<div className="absolute bottom-2 left-2 note-1">
-					<LightNote width={500} height={300} className="border-2 border-red-400">
+					<Note width={500} height={300} className="border-2 border-red-400">
 						<div 
 							className="absolute top-[35px] w-full h-[calc(100%-35px)] px-4 py-2 text-black text-wrap break-words text-lg"
 						>
@@ -84,11 +84,11 @@ export default function SyncShowcase() {
 								}}
 							/>
 						</div>
-					</LightNote>
+					</Note>
 				</div>
 
 				<div className="absolute -bottom-50 left-60 note-2">
-					<LightNote width={400} height={300} className="border-2 border-blue-400">
+					<Note width={400} height={300} className="border-2 border-blue-400">
 						<div 
 							className="absolute top-[35px] w-full h-[calc(100%-35px)] px-4 py-2 text-black text-wrap break-words text-lg"
 						>
@@ -102,7 +102,7 @@ export default function SyncShowcase() {
 								}}
 							/>
 						</div>
-					</LightNote>
+					</Note>
 				</div>
 
 			</div>

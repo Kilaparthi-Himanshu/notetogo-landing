@@ -1,32 +1,36 @@
 // 'use client';
 import { themeAtom } from "@/app/atoms";
 import { useAtom } from "jotai";
-import { ChevronUp, Lock, Pin, Repeat } from "lucide-react";
+import { Lock, Pin, Repeat } from "lucide-react";
 import { IoMdCloudOutline } from "react-icons/io";
 
-const DarkNoteOptions = () => {
-		// const [theme, setTheme] = useAtom(themeAtom);
-	
-    return (
-			<div className="z-20 absolute top-[26px] left-[15px] w-[200px] h-max bg-[#262626] rounded-[15px] shadow-[0px_4px_4px_2px_rgba(0,0,0,0.25)] p-[10px] flex flex-col gap-[11px]">
-					<div className="dropdownCard">
-							<div className="text-white">
+const NoteOptions = ({
+	theme="light",
+	setTheme
+}: {
+	theme?: string,
+	setTheme?: (theme: string) => void,
+}) => {
+		return (
+			<div className={`z-20 absolute top-[26px] left-[15px] w-[200px] h-max ${theme === "dark" ? "bg-[#262626]" : "bg-white"} rounded-[15px] shadow-[0px_4px_4px_2px_rgba(0,0,0,0.25)] p-[10px] flex flex-col gap-[11px]`}>
+					<div className={`dropdownCard ${theme}`}>
+							<div className={`${theme === "light" ? "text-black" : "text-white"}`}>
 									Theme
 							</div>
 
 							<div>
 									<div className="themeToggle">
 											<button 
-												// onClick={() => setTheme("light")} 
+												onClick={() => setTheme && setTheme("light")} 
 												// className={`themeButton ${theme === "light" && 'active'}`}
-												className="themeButton"
+												className={`themeButton ${theme === 'light' && 'active'}`}
 											>
 													🌞
 											</button>
 											<button 
-												// onClick={() => setTheme("dark")} 
+												onClick={() => setTheme && setTheme("dark")} 
 												// className={`themeButton ${theme === "dark" && 'active'}`}
-												className="themeButton active"
+												className={`themeButton ${theme === 'dark' && 'active'}`}
 											>
 													🌙
 											</button>
@@ -34,8 +38,8 @@ const DarkNoteOptions = () => {
 							</div>
 					</div>
 
-					<div className="dropdownCard">
-							<div className="text-white">
+					<div className={`dropdownCard ${theme}`}>
+							<div className={`${theme === "light" ? "text-black" : "text-white"}`}>
 									Color
 							</div>
 
@@ -46,8 +50,8 @@ const DarkNoteOptions = () => {
 							</div>
 					</div>
 
-					<div className="dropdownCard">
-							<div className="text-white">
+					<div className={`dropdownCard ${theme}`}>
+							<div className={`${theme === "light" ? "text-black" : "text-white"}`}>
 									Pin
 							</div>
 
@@ -64,8 +68,8 @@ const DarkNoteOptions = () => {
 							</div>
 					</div>
 
-					<div className="dropdownCard">
-							<div className="text-white">
+					<div className={`dropdownCard ${theme}`}>
+							<div className={`${theme === "light" ? "text-black" : "text-white"}`}>
 									Persist
 							</div>
 
@@ -82,8 +86,8 @@ const DarkNoteOptions = () => {
 							</div>
 					</div>
 
-					{/* <div className="dropdownCard">
-							<div className="text-white">
+					{/* <div className={`dropdownCard ${theme}`}>
+							<div className={`${theme === "light" ? "text-black" : "text-white"}`}>
 									Font
 							</div>
 
@@ -91,15 +95,15 @@ const DarkNoteOptions = () => {
 									<div title="Pin Note" className="pinsContainer">
 											<ChevronUp
 													style={{color: 
-															"white"
+															"black"
 													}}
 											/>
 									</div>
 							</div>
 					</div> */}
 
-					<div className="dropdownCard">
-							<div className="text-white">
+					<div className={`dropdownCard ${theme}`}>
+							<div className={`${theme === "light" ? "text-black" : "text-white"}`}>
 									Password
 							</div>
 
@@ -110,8 +114,8 @@ const DarkNoteOptions = () => {
 							</div>
 					</div>
 
-					<div className="dropdownCard">
-							<div className="text-white">
+					<div className={`dropdownCard ${theme}`}>
+							<div className={`${theme === "light" ? "text-black" : "text-white"}`}>
 									Sync
 							</div>
 
@@ -125,4 +129,4 @@ const DarkNoteOptions = () => {
     );
 }
 
-export default DarkNoteOptions;
+export default NoteOptions;

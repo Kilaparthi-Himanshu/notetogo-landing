@@ -4,8 +4,8 @@ import React from 'react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
-import { DarkNote } from './DarkNote';
-import DarkNoteOptions from './DarkNoteOptions';
+import { Note } from './Note';
+import NoteOptions from './NoteOptions';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -120,9 +120,9 @@ const Info = () => {
 
           {/* <div className='w-max'> */}
             <div className='dark-note-container'>
-              <DarkNote width={800} height={600} menuOpen={true}>
-                <DarkNoteOptions />
-              </DarkNote>
+              <Note theme='dark' width={800} height={600} menuOpen={true}>
+                <NoteOptions theme='dark' />
+              </Note>
             </div>
           {/* </div> */}
 

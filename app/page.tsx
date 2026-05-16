@@ -1,3 +1,4 @@
+import Customization from "@/components/Customization";
 import { Features } from "@/components/Features";
 import Info from "@/components/Info";
 import Opening from "@/components/Opening";
@@ -22,6 +23,8 @@ export default function Home() {
 				<SyncShowcase />
 
 				<RichTextShowcase />
+
+				<Customization />
       </SmoothScroll>
     </>
   );
