@@ -2,7 +2,12 @@ import { Check, Minimize, X } from "lucide-react";
 
 function TrafficLights({ bgColor, fill }: { bgColor: string, fill: string }) {
 	return (
-		<div className={`w-[160px] h-[35px] absolute right-0 flex justify-end items-center space-x-3 pr-2 ${bgColor}`}>
+		<div 
+			className={`w-[160px] h-[35px] absolute right-0 flex justify-end items-center space-x-3 pr-2`}
+			style={{
+				backgroundColor: bgColor
+			}}
+		>
 			<svg viewBox="0 0 50 35" width="100%" height="100%" preserveAspectRatio="none">
 				<path
 					d="M0,0 L31,0 C3,0 31,35 0,35"

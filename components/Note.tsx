@@ -3,13 +3,14 @@ import { RiMenu2Line } from "react-icons/ri";
 import TrafficLights from "./TrafficLights";
 
 export const Note = ({ 
-	id="note",
-	width=710,
-  height=480, 
-	menuOpen=false,
+	id = "note",
+	width = 710,
+  height = 480, 
+	menuOpen = false,
 	className,
 	children,
-	theme="light",
+	theme = "light",
+	customColor,
 }: { 
 		id?: string,
 		width?: number,
@@ -18,14 +19,16 @@ export const Note = ({
 		className?: string
 		children?: React.ReactNode,
 		theme?: string,
+		customColor?: string,
 	}) => {
   return (
     <div 
-			className={`${theme === "light" ? "bg-white" : "bg-[#262626]"} rounded-[15px] flex overflow-clip shadow-[0px_0px_6px_hsla(0,0%,0%,0.527)] relative ${className}`}
+			className={`rounded-[15px] flex overflow-clip shadow-[0px_0px_6px_hsla(0,0%,0%,0.527)] relative ${className}`}
 			id={id} 
 			style={{
 				width: width,
-				height: height
+				height: height,
+				backgroundColor: customColor ? customColor : theme === "light" ? "white" : "#262626",
 			}}
 		>
       {children}
@@ -39,7 +42,7 @@ export const Note = ({
           <span>NoteToGo</span>
         </div>
 
-        <TrafficLights bgColor={`${theme === "light" ? "bg-white" : "bg-[#262626]"}`} fill={`${theme === "light" ? "#D9D9D9" : "#454545"}`} />
+        <TrafficLights bgColor={customColor ? customColor : theme === "light" ? "white" : "#262626"} fill={`${theme === "light" ? "#D9D9D9" : "#454545"}`} />
       </div>
     </div>
   );

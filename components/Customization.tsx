@@ -2,18 +2,28 @@
 
 import { Sparkles } from 'lucide-react';
 import NoteOptions from "./NoteOptions";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Note } from "./Note";
 
 export default function Customization() {
 	const [theme, setTheme] = useState('light');
+	const [customColor, setCustomColor] = useState(theme === "light" ? "#ffffff" : "#262626");
+
+	const handleThemeChange = (newTheme: string) => {
+		setTheme(newTheme);
+		setCustomColor(newTheme === "light" ? "#ffffff" : "#262626"); // Reset custom color when theme changes
+	}
+
+	useEffect(() => {
+		console.log(customColor);
+	}, [customColor]);
 
 	return (
 		<section className='notes-container min-h-[100vh] max-md:min-h-max bg-neutral-900 max-md:flex-col p-2 py-14 flex items-center justify-center'>
 			<div className="w-full h-full relative ml-20">
 				<div className="note-1">
-					<Note width={550} height={400} menuOpen={true} theme={theme} className="">
-						<NoteOptions theme={theme} setTheme={setTheme} />
+					<Note theme={theme} width={570} height={460} menuOpen={true} customColor={customColor} className="">
+						<NoteOptions customColor={customColor} setCustomColor={setCustomColor} theme={theme} handleThemeChange={handleThemeChange} disabledOptions={["Pin", "Persist", "Password", "Sync", "Export"]} />
 
 						<div 
 							className="absolute top-[35px] w-full h-[calc(100%-35px)] px-4 py-2 text-black text-wrap break-words text-lg"
@@ -33,20 +43,20 @@ export default function Customization() {
 
 				<div className="w-[500px] relative text-justify">
 					<span className='h-[120px] flex items-center justify-center text-5xl text-white font-bold text-center gap-4 underline'>
-						Realtime Sync <Sparkles size={60} style={{color: "#9B5EFF"}} className="pt-4" />
+						Customization <Sparkles size={60} style={{color: "#9B5EFF"}} className="pt-4" />
 					</span>
 
 					<span className='h-[180px] text-xl text-white'>
-						Write once, access everywhere. NoteToGo instantly syncs your notes across devices in realtime and securely saves them to the cloud, so your latest ideas are always available no matter where you open them. Perfect for switching between work, study, and browsing sessions without losing momentum.
+						Make NoteToGo truly yours with customizable themes, accent colors, transparency, and glass effects. Create a workspace that matches your style while staying clean, modern, and distraction-free.
 						<br /><br />
 
-						Try the demo on the left - start typing in one note and watch the second note update live instantly, just like it would across multiple devices and browsers.
+						Try the interactive demo on the right - experiment with themes and appearance settings to instantly transform your notes in realtime.
 					</span>
 
 					<br /><br />
 
 					<span className="text-sm text-neutral-400">
-						Free plan includes up to 2 synced notes.
+						Glass effect is a pro only feature.
 					</span>
 				</div>
 			</div>
