@@ -12,10 +12,10 @@ const Opening = () => {
   useGSAP(() => {
     const tl = gsap.timeline({
       scrollTrigger: {
-        trigger: '#opening',
+        trigger: '#home',
         start: 'top top',
         end: 'bottom top',
-        pin: '#opening',
+        pin: '#home',
         scrub: true,
         markers: false
       }
@@ -32,10 +32,13 @@ const Opening = () => {
   });
 
   return (
-    <section className='w-[100vw] h-[100vh] flex items-center justify-center bg-white' id='opening'>
+    <section id="home" className='w-[100vw] h-[100vh] flex items-center justify-center bg-white'>
       <Note id='light-note'>
         <div className='absolute top-1/2 left-1/2 -translate-[50%]'>
-          <span className='text-[80px] inline-block' id='title'>NoteToGo</span>
+          <span className='text-[60px] flex items-center text-box-space gap-2' id='title'>
+						NoteToGo 
+						<img src='/icon.png' className='size-12' />
+					</span>
         </div>
       </Note>
     </section>

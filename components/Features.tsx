@@ -52,7 +52,7 @@ export const Features = () => {
 	});
 
 	return (
-		<section className='bg-change min-h-[100vh] max-md:min-h-max bg-neutral-900 flex features max-md:flex-col'>
+		<section id="features" className='bg-change min-h-[100vh] max-md:min-h-max bg-neutral-900 flex features max-md:flex-col'>
 			<div className='relative flex-1 flex items-center justify-center'>
 				<div className='max-md:hidden absolute bottom-0 right-0 h-[60%] w-[2px] bg-neutral-500 line' />
 

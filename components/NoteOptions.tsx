@@ -5,21 +5,27 @@ import { Lock, Pin, Repeat, Sparkles } from "lucide-react";
 import { PiExport } from "react-icons/pi";
 import { IoMdCloudOutline } from "react-icons/io";
 
+type NoteOptions = {
+	theme?: string,
+	setTheme?: (theme: string) => void, 
+	handleThemeChange?: (newTheme: string) => void,
+	customColor?: string,
+	setCustomColor?: (color: string) => void,
+	glassEffect?: boolean;
+	setGlassEffect?: (glass: boolean) => void;
+	disabledOptions?: string[],
+}
+
 const NoteOptions = ({
 	theme = "light",
 	setTheme,
 	handleThemeChange,
 	customColor,
 	setCustomColor,
+	glassEffect = true,
+	setGlassEffect,
 	disabledOptions = [],
-}: {
-	theme?: string,
-	setTheme?: (theme: string) => void, 
-	handleThemeChange?: (newTheme: string) => void,
-	customColor?: string,
-	setCustomColor?: (color: string) => void,
-	disabledOptions?: string[],
-}) => {
+}: NoteOptions) => {
 	const isDisabled = (name: string) => {
 		return disabledOptions.includes(name);
 	}
@@ -127,14 +133,14 @@ const NoteOptions = ({
 						</div>
 				</div>
 
-				<div className={`dropdownCard ${theme} ${isDisabled("Glass") && "blur-sm pointer-events-none"}`}>
+				<div className={`dropdownCard ${theme} ${isDisabled("Glass") && "blur-sm pointer-events-none"}`} onClick={() => setGlassEffect && setGlassEffect(!glassEffect)}>
 						<div className={`${theme === "light" ? "text-black" : "text-white"}`}>
 								Glass
 						</div>
 
 						<div>
 								<div title="Glass" className="pinsContainer">
-										<Sparkles style={{color: "#9B5EFF"}}/>
+										<Sparkles style={{color: glassEffect ? "#9B5EFF" : theme === "light" ? "black" : "white"}}/>
 								</div>
 						</div>
 				</div>

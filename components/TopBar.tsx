@@ -56,28 +56,52 @@ function TopBar() {
 			<div className="w-[600px] h-[50px] bg-white shadow-[0px_0px_6px_hsla(0,0%,0%,0.2)] rounded-4xl corner-squircle flex p-2 gap-2">	
 				<button 
 					className={`bg-neutral-100 rounded-4xl corner-squircle px-2 min-w-max w-full text-center text-black text-md cursor-pointer transition-all ${nav === "home" && "bg-neutral-300"}`}
-					onClick={() => setNav("home")}
+					onClick={() => {
+						document
+							.getElementById("home")
+							?.scrollIntoView({ behavior: "smooth" });
+
+						setNav("home");
+					}}
 				>
 					Home
 				</button>
 
 				<button 
 					className={`bg-neutral-100 rounded-4xl corner-squircle px-2 min-w-max w-full text-center text-black text-md cursor-pointer transition-all ${nav === "features" && "bg-neutral-300"}`}
-					onClick={() => setNav("features")}
+					onClick={() => {
+						document
+							.getElementById("features")
+							?.scrollIntoView({ behavior: "smooth" });
+
+						setNav("features");
+					}}
 				>
 					Features
 				</button>
 
 				<button 
 					className={`bg-neutral-100 rounded-4xl corner-squircle px-2 min-w-max w-full text-center text-black text-md cursor-pointer transition-all ${nav === "pricing" && "bg-neutral-300"}`}
-					onClick={() => setNav("pricing")}
+					onClick={() => {
+						document
+							.getElementById("pricing")
+							?.scrollIntoView({ behavior: "smooth" });
+
+						setNav("pricing");
+					}}
 				>
 					Pricing
 				</button>
 
 				<button 
 					className={`bg-neutral-100 rounded-4xl corner-squircle px-2 min-w-max w-full text-center text-black text-md cursor-pointer transition-all ${nav === "contact" && "bg-neutral-300"}`}
-					onClick={() => setNav("contact")}
+					onClick={() => {
+						document
+							.getElementById("footer")
+							?.scrollIntoView({ behavior: "smooth" });
+
+						setNav("contact");
+					}}
 				>
 					Contact
 				</button>
@@ -91,7 +115,7 @@ function TopBar() {
 				</Link>
 			</div>
 
-			<MdAccountCircle className="absolute right-5 size-12 text-neutral-500 text-center cursor-pointer" />
+			<MdAccountCircle className="absolute right-5 size-12 text-neutral-500 bg-white rounded-4xl text-center cursor-pointer" />
 		</motion.div>
 	);
 }

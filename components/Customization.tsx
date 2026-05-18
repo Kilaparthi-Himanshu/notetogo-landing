@@ -2,12 +2,52 @@
 
 import { Sparkles } from 'lucide-react';
 import NoteOptions from "./NoteOptions";
+import { useGSAP } from "@gsap/react";
+import gsap from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger';
 import { useEffect, useState } from "react";
 import { Note } from "./Note";
+import Poem from './Poem';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Customization() {
 	const [theme, setTheme] = useState('light');
-	const [customColor, setCustomColor] = useState(theme === "light" ? "#ffffff" : "#262626");
+	const [customColor, setCustomColor] = useState("#b23447");
+	const [glassEffect, setGlassEffect] = useState(false);
+
+	useGSAP(() => {
+		gsap.timeline({
+			scrollTrigger: {
+				trigger: ".customization-note-container",
+				start: 'top center-=60',
+        end: 'top top',
+				// scrub: true,
+				markers: false,
+				toggleActions: 'play none none reverse',
+			}
+		})
+		.from(".customization-note", {
+			opacity: 0,
+			x: -120,
+			duration: 1
+		});
+
+		gsap.timeline({
+			scrollTrigger: {
+				trigger: ".customization-note-container",
+				start: 'top center-=60',
+        end: 'top top',
+				// scrub: true,
+				markers: false,
+				toggleActions: 'play none none reverse',
+			}
+		}).from(".customization-text-info", {
+			opacity: 0,
+			x: 120,
+			duration: 1
+		});
+	});
 
 	const handleThemeChange = (newTheme: string) => {
 		setTheme(newTheme);
@@ -19,11 +59,13 @@ export default function Customization() {
 	}, [customColor]);
 
 	return (
-		<section className='notes-container min-h-[100vh] max-md:min-h-max bg-neutral-900 max-md:flex-col p-2 py-14 flex items-center justify-center'>
-			<div className="w-full h-full relative ml-20">
-				<div className="note-1">
-					<Note theme={theme} width={570} height={460} menuOpen={true} customColor={customColor} className="">
-						<NoteOptions customColor={customColor} setCustomColor={setCustomColor} theme={theme} handleThemeChange={handleThemeChange} disabledOptions={["Pin", "Persist", "Password", "Sync", "Export"]} />
+		<section className='customization-note-container min-h-[100vh] max-md:min-h-max bg-neutral-900 max-md:flex-col p-2 py-14 flex items-center justify-center'>
+			<div className="w-full h-full relative ml-20 customization-note">
+				<Poem />
+
+				<div>
+					<Note theme={theme} width={570} height={460} menuOpen={true} customColor={customColor} glassEffect={glassEffect} className="">
+						<NoteOptions customColor={customColor} setCustomColor={setCustomColor} theme={theme} handleThemeChange={handleThemeChange} glassEffect={glassEffect} setGlassEffect={setGlassEffect} disabledOptions={["Pin", "Persist", "Password", "Sync", "Export"]} />
 
 						<div 
 							className="absolute top-[35px] w-full h-[calc(100%-35px)] px-4 py-2 text-black text-wrap break-words text-lg"
@@ -38,7 +80,7 @@ export default function Customization() {
 				</div>
 			</div>
 
-			<div className="w-full min-h-full flex items-center justify-center sync-info">
+			<div className="customization-text-info w-full min-h-full flex items-center justify-center">
 				<Sparkles size={600} style={{color: "#9B5EFF"}} className="absolute blur-lg opacity-50" />
 
 				<div className="w-[500px] relative text-justify">

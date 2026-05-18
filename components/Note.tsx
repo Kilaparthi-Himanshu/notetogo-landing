@@ -1,6 +1,19 @@
 import { Check, Minimize, X } from "lucide-react";
 import { RiMenu2Line } from "react-icons/ri";
 import TrafficLights from "./TrafficLights";
+import { hexToRgba } from "@/app/utils/colorFormatChange";
+
+type Note = {
+	id?: string,
+	width?: number,
+	height?: number,
+	menuOpen?: boolean,
+	className?: string
+	children?: React.ReactNode,
+	theme?: string,
+	customColor?: string,
+	glassEffect?: boolean
+}
 
 export const Note = ({ 
 	id = "note",
@@ -11,16 +24,24 @@ export const Note = ({
 	children,
 	theme = "light",
 	customColor,
-}: { 
-		id?: string,
-		width?: number,
-		height?: number,
-		menuOpen?: boolean,
-		className?: string
-		children?: React.ReactNode,
-		theme?: string,
-		customColor?: string,
-	}) => {
+	glassEffect,
+}: Note) => {
+	const glassBackgroundStyle = glassEffect ? {
+        backgroundColor: hexToRgba(customColor!, 0.35),
+        backdropFilter: 'blur(16px) saturate(180%)', // frosted + vibrant 
+        WebkitBackdropFilter: 'blur(16px) saturate(180%)', // Safari support 
+        boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)', // soft shadow glow
+    } : {
+        backgroundColor: customColor ? customColor : theme === "light" ? "white" : "#262626",
+    }
+
+    const glassEffectBorderStyle = glassEffect && {
+        border: '1px solid rgba(255, 255, 255, 0.25)',
+        borderBottomLeftRadius: '16px',
+        borderBottomRightRadius: '16px',
+        borderTop: '0px'
+    }
+
   return (
     <div 
 			className={`rounded-[15px] flex overflow-clip shadow-[0px_0px_6px_hsla(0,0%,0%,0.527)] relative ${className}`}
@@ -28,7 +49,8 @@ export const Note = ({
 			style={{
 				width: width,
 				height: height,
-				backgroundColor: customColor ? customColor : theme === "light" ? "white" : "#262626",
+				...glassBackgroundStyle,
+				...glassEffectBorderStyle,
 			}}
 		>
       {children}
@@ -42,7 +64,7 @@ export const Note = ({
           <span>NoteToGo</span>
         </div>
 
-        <TrafficLights bgColor={customColor ? customColor : theme === "light" ? "white" : "#262626"} fill={`${theme === "light" ? "#D9D9D9" : "#454545"}`} />
+        <TrafficLights bgColor={glassEffect ? theme === "light" ? "#D9D9D9" : "#454545" : customColor ? customColor : theme === "light" ? "white" : "#262626"} fill={`${theme === "light" ? "#D9D9D9" : "#454545"}`} />
       </div>
     </div>
   );

@@ -1,7 +1,9 @@
 import Customization from "@/components/Customization";
 import { Features } from "@/components/Features";
+import Footer from "@/components/Footer";
 import Info from "@/components/Info";
 import Opening from "@/components/Opening";
+import { Pricing } from "@/components/Pricing";
 import RichTextShowcase from "@/components/RichTextShowcase";
 import SmoothScroll from "@/components/SmoothScroll";
 import SyncShowcase from "@/components/SyncShowcase";
@@ -25,6 +27,10 @@ export default function Home() {
 				<RichTextShowcase />
 
 				<Customization />
+
+				<Pricing />
+
+				<Footer />
       </SmoothScroll>
     </>
   );
