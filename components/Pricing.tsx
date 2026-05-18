@@ -12,10 +12,10 @@ export function Pricing() {
 
 	return (
 		<section className='bg-change-pricing min-h-[100vh]'>
-			<div className="w-full min-h-[50vh] bg-linear-to-b from-neutral-900 to-80% to-white" />
+			<div className="w-full min-h-[50vh] bg-linear-to-b from-neutral-900 to-white gradient-ease-in-out" />
 
 			<div id="pricing" className='w-full min-h-[110vh] bg-white'>
-				<div className='w-full bg-white flex flex-col items-center px-6'>
+				<div className='w-full bg-white flex flex-col items-center px-6 py-4'>
 					<div className='max-w-[1200px] w-full flex flex-col items-center gap-10'>
 
 						{/* Heading */}

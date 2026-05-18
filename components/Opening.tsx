@@ -35,9 +35,9 @@ const Opening = () => {
     <section id="home" className='w-[100vw] h-[100vh] flex items-center justify-center bg-white'>
       <Note id='light-note'>
         <div className='absolute top-1/2 left-1/2 -translate-[50%]'>
-          <span className='text-[60px] flex items-center text-box-space gap-2' id='title'>
+          <span className='text-[60px] flex items-center text-box-space gap-3' id='title'>
 						NoteToGo 
-						<img src='/icon.png' className='size-12' />
+						<img src='/icon.png' className='size-13' />
 					</span>
         </div>
       </Note>

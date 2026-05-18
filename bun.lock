@@ -1,6 +1,5 @@
 {
   "lockfileVersion": 1,
-  "configVersion": 0,
   "workspaces": {
     "": {
       "name": "notetogo-landing",
@@ -26,6 +25,7 @@
         "@tiptap/react": "^3.23.4",
         "@tiptap/starter-kit": "^3.23.4",
         "@toolwind/corner-shape": "^0.0.8-3",
+        "easing-gradients": "^0.0.3",
         "framer-motion": "^12.38.0",
         "gsap": "^3.13.0",
         "jotai": "^2.20.0",
@@ -298,6 +298,8 @@
     "detect-libc": ["detect-libc@2.0.4", "", {}, "sha512-3UDv+G9CsCKO1WKMGw9fwq/SWJYbI0c5Y7LU1AXYoDdbhE2AHQ6N6Nb34sG8Fj7T5APy8qXDCKuuIHd1BR0tVA=="],
 
     "devlop": ["devlop@1.1.0", "", { "dependencies": { "dequal": "^2.0.0" } }, "sha512-RWmIqhcFf1lRYBvNmr7qTNuyCt/7/ns2jbpp1+PalgE/rDQcBT0fioSMUpJ93irlUhC5hrg4cYqe6U+0ImW0rA=="],
+
+    "easing-gradients": ["easing-gradients@0.0.3", "", { "peerDependencies": { "tailwindcss": ">=4.0.0" } }, "sha512-uWbuKQ2hfzTICdxetDJl/PT03vHXWsa5IwxzZCVythQZXclmWfyEf0jU+2Vtd+OCyHMGLl8XMal6zX2d4xi3eQ=="],
 
     "enhanced-resolve": ["enhanced-resolve@5.21.3", "", { "dependencies": { "graceful-fs": "^4.2.4", "tapable": "^2.3.3" } }, "sha512-QyL119InA+XXEkNLNTPCXPugSvOfhwv0JOlGNzvxs0hZaiHLNvXSpudUWsOlsXGWJh8G6ckCScEkVHfX3kw/2Q=="],
 

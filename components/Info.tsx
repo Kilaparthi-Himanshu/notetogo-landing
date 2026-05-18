@@ -98,7 +98,7 @@ const Info = () => {
 
   return (
     <section className='bg-change min-h-[100vh]'>
-      <div className="w-full min-h-[50vh] bg-linear-to-b from-white to-neutral-900" />
+      <div className="w-full min-h-[50vh] bg-linear-to-b from-white to-neutral-900 gradient-ease-in-out" />
 
       <div className='info right-0 md:w-[200vw] min-h-screen flex items-center justify-center bg-neutral-900 py-20 md:py-0'>
         <div className='info-inner md:-translate-x-[100vw] flex flex-col md:flex-row items-center w-full h-max justify-between gap-24 md:gap-0'>

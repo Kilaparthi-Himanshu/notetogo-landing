@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @plugin "@toolwind/corner-shape";
 @import 'highlight.js/styles/github-dark.css';
+@plugin "easing-gradients";
 
 .dropdownCard {
     display: flex;
