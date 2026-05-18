@@ -3,7 +3,7 @@ import { RiMenu2Line } from "react-icons/ri";
 import TrafficLights from "./TrafficLights";
 import { hexToRgba } from "@/app/utils/colorFormatChange";
 
-type Note = {
+type NoteType = {
 	id?: string,
 	width?: number,
 	height?: number,
@@ -25,7 +25,7 @@ export const Note = ({
 	theme = "light",
 	customColor,
 	glassEffect,
-}: Note) => {
+}: NoteType) => {
 	const glassBackgroundStyle = glassEffect ? {
         backgroundColor: hexToRgba(customColor!, 0.35),
         backdropFilter: 'blur(16px) saturate(180%)', // frosted + vibrant 

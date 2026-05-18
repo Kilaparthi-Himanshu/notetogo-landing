@@ -5,7 +5,7 @@ import { Lock, Pin, Repeat, Sparkles } from "lucide-react";
 import { PiExport } from "react-icons/pi";
 import { IoMdCloudOutline } from "react-icons/io";
 
-type NoteOptions = {
+type NoteOptionsType = {
 	theme?: string,
 	setTheme?: (theme: string) => void, 
 	handleThemeChange?: (newTheme: string) => void,
@@ -25,7 +25,7 @@ const NoteOptions = ({
 	glassEffect = true,
 	setGlassEffect,
 	disabledOptions = [],
-}: NoteOptions) => {
+}: NoteOptionsType) => {
 	const isDisabled = (name: string) => {
 		return disabledOptions.includes(name);
 	}
