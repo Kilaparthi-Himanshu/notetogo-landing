@@ -11,7 +11,7 @@
   "dependencies": {
     "@gsap/react": "^2.1.2",
     "@studio-freight/lenis": "^1.0.42",
-    "@supabase/supabase-js": "^2.75.1",
+    "@supabase/supabase-js": "^2.106.0",
     "@tiptap/extension-bold": "^3.23.4",
     "@tiptap/extension-bullet-list": "^3.23.4",
     "@tiptap/extension-code-block-lowlight": "^3.23.4",

@@ -27,19 +27,19 @@ export const Note = ({
 	glassEffect,
 }: NoteType) => {
 	const glassBackgroundStyle = glassEffect ? {
-        backgroundColor: hexToRgba(customColor!, 0.35),
-        backdropFilter: 'blur(16px) saturate(180%)', // frosted + vibrant 
-        WebkitBackdropFilter: 'blur(16px) saturate(180%)', // Safari support 
-        boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)', // soft shadow glow
+			backgroundColor: hexToRgba(customColor!, 0.35),
+			backdropFilter: 'blur(16px) saturate(180%)', // frosted + vibrant 
+			WebkitBackdropFilter: 'blur(16px) saturate(180%)', // Safari support 
+			boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)', // soft shadow glow
     } : {
-        backgroundColor: customColor ? customColor : theme === "light" ? "white" : "#262626",
+			backgroundColor: customColor ? customColor : theme === "light" ? "white" : "#262626",
     }
 
     const glassEffectBorderStyle = glassEffect && {
-        border: '1px solid rgba(255, 255, 255, 0.25)',
-        borderBottomLeftRadius: '16px',
-        borderBottomRightRadius: '16px',
-        borderTop: '0px'
+			border: '1px solid rgba(255, 255, 255, 0.25)',
+			borderBottomLeftRadius: '16px',
+			borderBottomRightRadius: '16px',
+			borderTop: '0px'
     }
 
   return (

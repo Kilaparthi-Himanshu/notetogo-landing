@@ -2,15 +2,37 @@
 
 import { navAtom } from "@/app/atoms";
 import { useAtom } from "jotai";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { RiArrowRightUpLongFill } from "react-icons/ri";
 import Link from "next/link";
 import { MdAccountCircle } from "react-icons/md";
+import { useRouter } from "next/navigation";
 
 function TopBar() {
 	const [nav, setNav] = useAtom(navAtom);
 	const [visible, setVisible] = useState(true);
+	const [menuOpen, setMenuOpen] = useState(false);
+	const router = useRouter();
+
+	const menuRef = useRef<HTMLDivElement | null>(null);
+
+	useEffect(() => {
+		const handleClickOutside = (e: MouseEvent) => {
+			if (
+				menuRef.current &&
+				!menuRef.current.contains(e.target as Node)
+			) {
+				setMenuOpen(false);
+			}
+		}
+
+		document.addEventListener("mousedown", handleClickOutside);
+
+		return () => {
+			document.removeEventListener("mousedown", handleClickOutside);
+		}
+	}, []);
 
 	const lastScrollY = useRef(0);
 
@@ -24,6 +46,7 @@ function TopBar() {
 			// scrolling down
 			if (currentScrollY > lastScrollY.current) {
 				setVisible(false);
+				setMenuOpen(false);
 			}
 			// scrolling up
 			else {
@@ -115,7 +138,50 @@ function TopBar() {
 				</Link>
 			</div>
 
-			<MdAccountCircle className="absolute right-5 size-12 text-neutral-500 bg-white rounded-4xl text-center cursor-pointer" />
+			<div ref={menuRef} className="absolute right-5 ">
+				<button>
+					<MdAccountCircle 
+						className="size-12 text-neutral-500 bg-white rounded-4xl text-center cursor-pointer select-none" 
+						onClick={() => setMenuOpen(!menuOpen)} 
+						type="button"
+					/>
+				</button>
+
+				<AnimatePresence>
+					{menuOpen && 
+						<motion.div 
+							initial={{
+								opacity: 0,
+								y: -10,
+								scale: 0.95
+							}}
+							animate={{
+								opacity: 1,
+								y: 0,
+								scale: 1
+							}}
+							exit={{
+								opacity: 0,
+								y: -10,
+								scale: 0.95
+							}}
+							transition={{
+								duration: 0.2,
+								ease: [0.22, 1, 0.36, 1]
+							}}
+							className="absolute right-10 top-14 w-[170px] h-max rounded-3xl corner-squircle shadow-lg overflow-hidden bg-white p-1 font-semibold flex flex-col items-center justify-center gap-1"
+						>
+							<button className="w-full h-[50px] flex items-center justify-center cursor-pointer hover:bg-neutral-300 transition-all rounded-2xl corner-squircle" onClick={() => router.push('/account-settings')}>
+								Account Settings
+							</button>
+
+							<button className="w-full h-[50px] flex items-center justify-center cursor-pointer hover:bg-neutral-300 transition-all rounded-2xl corner-squircle" onClick={() => router.push('/auth')}>
+								Sign Out
+							</button>
+						</motion.div>
+					}
+				</AnimatePresence>
+			</div>
 		</motion.div>
 	);
 }
