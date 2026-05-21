@@ -1,5 +1,5 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { supabase } from "@/lib/supabase";
+import { supabase } from "@/lib/supabase/client";
 import { useEffect } from "react";
 
 export type UserDetailsType = {
@@ -12,9 +12,11 @@ export type UserDetailsType = {
 export async function fetchUserDetails() {
 	const { data: sessionData, error: sessionError } = await supabase.auth.getSession();
 
+	console.log("SESSION DATA: ", sessionData);
 	if (sessionError || !sessionData.session) {
 		return { session: null, userDetails: null };
 	}
+
 
 	const session = sessionData.session;
 

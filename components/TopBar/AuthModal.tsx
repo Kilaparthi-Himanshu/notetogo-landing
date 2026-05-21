@@ -1,10 +1,12 @@
+'use client';
+
 import React, { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from "framer-motion";
 import { useLenis } from '../SmoothScroll';
 import { X } from 'lucide-react';
 import TrafficLights from '../TrafficLights';
-import { useUser } from '@/app/hooks/useUser';
-import { supabase } from '@/lib/supabase';
+import { UserDetailsType, useUser } from '@/app/hooks/useUser';
+import { supabase } from '@/lib/supabase/client';
 import type { Session } from "@supabase/auth-js/dist/module";
 
 export default function AuthModal({
@@ -37,62 +39,9 @@ export default function AuthModal({
 		}
 	}, []);
 
-	// const [user, setUser] = useState<any>(null);
-	// const [userDetails, setUserDetails] = useState<any>(null);
 	const { data: user, isFetching } = useUser();
+	const [userDetails, setUserDetails] = useState<UserDetailsType | null>(null);
 	const [actionType, setActionType] = useState<'signup' | 'signin'>('signup');
-
-	// // Initial user data load
-	// useEffect(() => {
-	// 	const init = async () => {
-	// 		const { data, error } = await supabase
-	// 			.auth
-	// 			.getSession();
-
-	// 		if (error) {
-	// 			console.error(error);
-	// 			return;
-	// 		}
-
-	// 		if (!!data.session) {
-	// 			setUser(data.session.user);
-	// 		} else return;
-
-	// 		if (data.session.user.email_confirmed_at) {
-	// 			selectAndInsert(data.session);
-	// 		}
-	// 	}
-
-	// 	init();
-	// }, []);
-
-	// // Auth state change listener
-	// useEffect(() => {
-	// 	const { data: subscription } = supabase.auth.onAuthStateChange(
-	// 		async (event, session) => {
-	// 			if (event === "SIGNED_OUT") {
-	// 				setUser(null);
-	// 			}
-
-	// 			if (event === "SIGNED_IN" && session?.user.email_confirmed_at) {
-	// 				setUser(session.user);
-
-	// 				// (async () => {
-	// 				// 	await selectAndInsert(session);
-	// 				// })();
-	// 				selectAndInsert(session);
-	// 			}
-	// 		}
-	// 	)
-	// }, []);
-
-	// const selectAndInsert = async (session: Session) => {
-		
-	// }
-
-	useEffect(() => {
-		console.log("USER: ", user);
-	}, [user]);
 
 	const signUp = async (formData: FormData) => {
 		const email = formData.get("email") as string;
@@ -150,6 +99,20 @@ export default function AuthModal({
 		}
 
 		alert("Signed In Successfully!");
+	}
+
+	const signInWithGoogle = async () => {
+		const { error } = await supabase.auth.signInWithOAuth({
+			provider: "google",
+			options: {
+				redirectTo: `${window.location.origin}/auth/callback`
+			}
+		});
+
+		if (error) {
+			console.error(error);
+			alert("Google sign in failed");
+		}
 	}
 
 	const signOut = async () => {
@@ -305,7 +268,7 @@ export default function AuthModal({
 							<button 
 									className="cursor-pointer w-full rounded-xl h-[45px] text-violet-300 text-xl px-2 outline-none border-2 border-transparent hover:border-2 hover:border-purple-400 bg-neutral-800 transition-all duration-[100ms] active:scale-95 flex items-center justify-center gap-4"
 									type="button"
-									// onClick={signInWithGoogle}
+									onClick={signInWithGoogle}
 							>
 								<img src='/google_logo.png'
 									alt="Google logo"
@@ -328,7 +291,7 @@ export default function AuthModal({
 
 									<div>
 										<span>Subscription Plan:<br /></span>
-										<b className={`text-2xl capitalize ${user.userDetails?.subscription_status === 'pro' && 'text-yellow-400'}`}>
+										<b className={`text-2xl capitalize ${userDetails?.subscription_status === 'pro' && 'text-yellow-400'}`}>
 											{user.userDetails?.subscription_status}
 										</b>
 									</div>
