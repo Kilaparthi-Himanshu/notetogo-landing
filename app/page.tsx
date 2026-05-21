@@ -7,7 +7,7 @@ import { Pricing } from "@/components/Pricing";
 import RichTextShowcase from "@/components/RichTextShowcase";
 import SmoothScroll from "@/components/SmoothScroll";
 import SyncShowcase from "@/components/SyncShowcase";
-import TopBar from "@/components/TopBar";
+import TopBar from "@/components/TopBar/TopBar";
 
 export default function Home() {
 

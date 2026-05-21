@@ -1,67 +1,81 @@
 'use client';
 
-import { useEffect } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 import Lenis from '@studio-freight/lenis';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
+export const LenisContext = createContext<Lenis | null>(null);
+
+export function useLenis() {
+	return useContext(LenisContext);
+}
+
 export default function SmoothScroll({
-  children,
+	children,
 }: {
-  children: React.ReactNode;
+	children: React.ReactNode;
 }) {
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
+	const [lenis, setLenis] = useState<Lenis | null>(null);
 
-    const lenis = new Lenis({
-      duration: 1.2,
-      smoothWheel: true,
-    });
+	useEffect(() => {
+		gsap.registerPlugin(ScrollTrigger);
 
-    let rafId: number;
+		const lenisInstance = new Lenis({
+			duration: 1.2,
+			smoothWheel: true,
+		});
 
-    function raf(time: number) {
-      lenis.raf(time);
-      rafId = requestAnimationFrame(raf);
-    }
+		setLenis(lenisInstance);
 
-    rafId = requestAnimationFrame(raf);
+		let rafId: number;
 
-    lenis.on('scroll', ScrollTrigger.update);
+		function raf(time: number) {
+			lenisInstance.raf(time);
+			rafId = requestAnimationFrame(raf);
+		}
 
-    ScrollTrigger.scrollerProxy(document.body, {
-      scrollTop(value) {
-        if (value !== undefined) {
-          lenis.scrollTo(value);
-        }
+		rafId = requestAnimationFrame(raf);
 
-        return window.scrollY;
-      },
+		lenisInstance.on('scroll', ScrollTrigger.update);
 
-      getBoundingClientRect() {
-        return {
-          top: 0,
-          left: 0,
-          width: window.innerWidth,
-          height: window.innerHeight,
-        };
-      },
+		ScrollTrigger.scrollerProxy(document.body, {
+			scrollTop(value) {
+				if (value !== undefined) {
+					lenisInstance.scrollTo(value);
+				}
 
-      pinType: document.body.style.transform
-        ? 'transform'
-        : 'fixed',
-    });
+				return window.scrollY;
+			},
 
-    ScrollTrigger.refresh();
+			getBoundingClientRect() {
+				return {
+					top: 0,
+					left: 0,
+					width: window.innerWidth,
+					height: window.innerHeight,
+				};
+			},
 
-    return () => {
-      cancelAnimationFrame(rafId);
+			pinType: document.body.style.transform
+				? 'transform'
+				: 'fixed',
+		});
 
-      lenis.destroy();
+		ScrollTrigger.refresh();
 
-      ScrollTrigger.getAll().forEach((t) => t.kill());
-    };
-  }, []);
+		return () => {
+			cancelAnimationFrame(rafId);
 
-  return <>{children}</>;
+			lenisInstance.destroy();
+
+			ScrollTrigger.getAll().forEach((t) => t.kill());
+		};
+	}, []);
+
+	return (
+		<LenisContext.Provider value={lenis}>
+			{children}
+		</LenisContext.Provider>
+	);
 }

@@ -1,6 +1,6 @@
 import { Check, Minimize, X } from "lucide-react";
 
-function TrafficLights({ bgColor, fill }: { bgColor: string, fill: string }) {
+function TrafficLights({ bgColor, fill, onClickClose }: { bgColor: string, fill: string, onClickClose?: () => void; }) {
 	return (
 		<div 
 			className={`w-[160px] h-[35px] absolute right-0 flex justify-end items-center space-x-3 pr-2`}
@@ -31,6 +31,7 @@ function TrafficLights({ bgColor, fill }: { bgColor: string, fill: string }) {
 
 			<div className='bg-[#FF4848] group rounded-full min-w-[18px] min-h-[18px] flex items-center justify-center hover:scale-110 transition-[scale] relative text-[darkred] cursor-pointer'>
 				<X
+					onClick={() => {onClickClose && onClickClose()}}
 					className="hidden group-hover:block"
 					size={14}
 				/>

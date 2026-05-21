@@ -1,14 +1,20 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import Link from 'next/link';
+import { useUser } from '@/app/hooks/useUser';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export function Pricing() {
+	const { data, isFetching } = useUser();
+	const session = data?.session;
+	const userDetails = data?.userDetails;
+
+	console.log(data);
 
 	return (
 		<section className='bg-change-pricing min-h-[100vh]'>

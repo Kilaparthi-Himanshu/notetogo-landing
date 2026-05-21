@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { ReactQueryProvider } from "@/components/misc/ReactQueryProvider";
+import AuthSyncProvider from "@/components/misc/AuthSyncProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,8 +30,10 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`}
       >
         {/* <NavBar /> */}
-
-        {children}
+				<ReactQueryProvider>
+					<AuthSyncProvider />
+        	{children}
+				</ReactQueryProvider>
       </body>
     </html>
   );
