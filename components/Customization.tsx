@@ -54,9 +54,9 @@ export default function Customization() {
 		setCustomColor(newTheme === "light" ? "#ffffff" : "#262626"); // Reset custom color when theme changes
 	}
 
-	useEffect(() => {
-		console.log(customColor);
-	}, [customColor]);
+	// useEffect(() => {
+	// 	console.log(customColor);
+	// }, [customColor]);
 
 	return (
 		<section className='customization-note-container min-h-[100vh] max-md:min-h-max bg-neutral-900 max-md:flex-col p-2 py-14 flex items-center justify-center'>

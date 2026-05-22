@@ -1,3 +1,7 @@
+/**
+ * @deprecated DO NOT USE.
+ * This hook has been removed and will be deleted soon.
+ */
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/lib/supabase/client";
 import { useEffect } from "react";

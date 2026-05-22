@@ -1,63 +1,40 @@
 'use client';
 
 import { useEffect } from 'react';
-import { useQueryClient } from '@tanstack/react-query';
 import { supabase } from '@/lib/supabase/client';
-
-async function ensureUserExists(session: any) {
-	const { data: userData, error: userError } = await supabase
-		.from("users")
-		.select("*")
-		.eq("user_id", session.user.id)
-		.maybeSingle();
-
-	if (!userError && !userData) {
-		console.log("INSERTINGGGGGG");
-		const { data: userInsertData, error: userInsertError } = await supabase
-			.from("users")
-			.insert({
-					user_id: session.user.id,
-					email: session.user.email,
-			})
-			.select()
-			.maybeSingle();
-
-		console.log("LOL: ", userInsertData, userInsertError);
-	}
-}
+import ensureUserExists from '@/app/utils/ensureUserExists';
+import { useSetAtom } from 'jotai';
+import { userAtom, userDetailsAtom } from '@/lib/atoms';
+import { Session } from '@supabase/supabase-js';
 
 export default function AuthSyncProvider() {
-	const queryClient = useQueryClient();
+	const setUser = useSetAtom(userAtom);
+  const setUserDetails = useSetAtom(userDetailsAtom);
 
 	useEffect(() => {
-		const { data: listener } = supabase.auth.onAuthStateChange(
-			async (event, session) => {
-				console.log("HERE!", event);
+		const syncUser = async (session: Session | null) => {
+			setUser(session?.user ?? null);
 
-				if ((event === 'SIGNED_IN' ||
-					event === 'INITIAL_SESSION') && 
-					session
-				) {
-					await ensureUserExists(session);
-					queryClient.invalidateQueries({
-						queryKey: ['user']
-					});
-				}
-
-				if (
-					event === 'SIGNED_IN' ||
-					event === 'SIGNED_OUT'
-				) {
-					queryClient.invalidateQueries({
-						queryKey: ['user']
-					});
-				}
+			if (!session?.user) {
+				setUserDetails(null);
+				return;
 			}
-		);
 
-		return () => {
-			listener.subscription.unsubscribe();
+			const userDetails = await ensureUserExists(session);
+			setUserDetails(userDetails);
 		};
+
+		supabase.auth.getSession().then(({ data }) => {
+			syncUser(data.session);
+		});
+
+		const {
+			data: { subscription },
+		} = supabase.auth.onAuthStateChange((_event, session) => {
+			syncUser(session);
+		});
+
+		return () => subscription.unsubscribe();
 	}, []);
 
 	return null;

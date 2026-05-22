@@ -5,16 +5,14 @@ import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import Link from 'next/link';
-import { useUser } from '@/app/hooks/useUser';
+import { useAtomValue } from 'jotai';
+import { userAtom, userDetailsAtom } from '@/lib/atoms';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export function Pricing() {
-	const { data, isFetching } = useUser();
-	const session = data?.session;
-	const userDetails = data?.userDetails;
-
-	console.log(data);
+	const user = useAtomValue(userAtom);
+	const userDetails = useAtomValue(userDetailsAtom);
 
 	return (
 		<section className='bg-change-pricing min-h-[100vh]'>
@@ -120,7 +118,7 @@ export function Pricing() {
 								</div>
 
 								<button className='w-full h-[60px] rounded-full bg-[#8B5CF6] text-white text-lg font-medium transition-all hover:scale-[1.02] hover:bg-[#7C3AED] cursor-pointer'>
-									Upgrade to Pro
+									{userDetails ?  '✓ Active Plan' : 'Upgrade to Pro'}
 								</button>
 
 								<div className='w-full h-[1px] bg-neutral-700' />

@@ -30,10 +30,10 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`}
       >
         {/* <NavBar /> */}
-				<ReactQueryProvider>
+				{/* <ReactQueryProvider> */}
 					<AuthSyncProvider />
         	{children}
-				</ReactQueryProvider>
+				{/* </ReactQueryProvider> */}
       </body>
     </html>
   );

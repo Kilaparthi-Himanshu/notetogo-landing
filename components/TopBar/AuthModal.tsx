@@ -5,9 +5,9 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useLenis } from '../SmoothScroll';
 import { X } from 'lucide-react';
 import TrafficLights from '../TrafficLights';
-import { UserDetailsType, useUser } from '@/app/hooks/useUser';
 import { supabase } from '@/lib/supabase/client';
-import type { Session } from "@supabase/auth-js/dist/module";
+import { useAtomValue } from 'jotai';
+import { userAtom, userDetailsAtom } from '@/lib/atoms';
 
 export default function AuthModal({
 	setIsOpen
@@ -39,19 +39,22 @@ export default function AuthModal({
 		}
 	}, []);
 
-	const { data: user, isFetching } = useUser();
-	const [userDetails, setUserDetails] = useState<UserDetailsType | null>(null);
+	const user = useAtomValue(userAtom);
+	const userDetails = useAtomValue(userDetailsAtom);
 	const [actionType, setActionType] = useState<'signup' | 'signin'>('signup');
+
+	useEffect(() => {
+		console.log("USERRRRRRR: ", user);
+	}, [user]);
+
+	useEffect(() => {
+		console.log("USERRRRRRR DETAILSSSSS: ", userDetails);
+	}, [userDetails]);
 
 	const signUp = async (formData: FormData) => {
 		const email = formData.get("email") as string;
 		const password = formData.get("password") as string;
 		const confirmPassword = formData.get("confirmPassword") as string;
-
-		const redirectUrl =
-			process.env.NODE_ENV == "development"
-			? "http://localhost:3000/"
-			: "https://notetogo.vercel.app/";
 
 		if (!email || !password || !confirmPassword) {
 			alert("All Fields Must Be Filled!");
@@ -69,7 +72,10 @@ export default function AuthModal({
 				email,
 				password,
 				options: {
-					emailRedirectTo: redirectUrl
+					emailRedirectTo: `${window.location.origin}/auth/confirm`,
+					// process.env.NODE_ENV === 'development'
+					// 	? 'http://localhost:3000/auth/confirm'
+					// 	: 'https://notetogo.vercel.app/auth/confirm',
 				}
 			});
 
@@ -115,6 +121,20 @@ export default function AuthModal({
 		}
 	}
 
+	const signInWithGithub = async () => {
+		const { error } = await supabase.auth.signInWithOAuth({
+			provider: "github",
+			options: {
+				redirectTo: `${window.location.origin}/auth/callback`
+			}
+		});
+
+		if (error) {
+			console.error(error);
+			alert("GitHub sign in failed");
+		}
+	}
+
 	const signOut = async () => {
 		const { error } = await supabase
 			.auth
@@ -152,21 +172,21 @@ export default function AuthModal({
 				className='w-full h-full rounded-4xl corner-squircle bg-neutral-900 relative flex items-center justify-center px-2'
 				onClick={(e) => e.stopPropagation()}
 			>
-				<button 
+				{/* <button 
 					className='absolute top-2 right-2 size-[40px] cursor-pointer bg-red-500 hover:bg-red-800 active:scale-95 transition-all rounded-4xl corner-squircle flex items-center justify-center'
 					onClick={() => {
 						setIsOpen(false);
 					}}
 				>
 					<X className='text-white' />
-				</button>
+				</button> */}
 
-				{/* <div className='absolute top-2 right-2'>
+				<div className='absolute top-2 right-2'>
 					<TrafficLights bgColor='#171717' fill='#171717' onClickClose={() => setIsOpen(false)} />
-				</div> */}
+				</div>
 
 				<motion.form
-					layout
+					// layout
 					className='w-[400px] h-max rounded-4xl corner-squircle p-4 flex flex-col items-center justify-center gap-10 text-white'
 					onSubmit={(e) => {
 						e.preventDefault();
@@ -178,11 +198,12 @@ export default function AuthModal({
 						}
 					}}
 				>
-					<span className='text-4xl font-semibold'>{actionType === 'signin' ? 'Sign In' : 'Sign Up'}</span>
+					{/* <span className='text-4xl font-semibold'>{actionType === 'signin' ? 'Sign In' : 'Sign Up'}</span> */}
+					{!user &&  <span className='w-max text-4xl font-semibold'>Welcome to NoteToGo</span>}
 
-					{!user?.session && !user?.userDetails ? (
+					 {!userDetails ? (
 						<>
-							<div className='flex flex-col items-center justify-center w-full gap-6'>
+							{/* <div className='flex flex-col items-center justify-center w-full gap-6'>
 								<div className="w-full h-max flex flex-col gap-3">
 									<span className="text-2xl">Email</span>
 
@@ -263,20 +284,39 @@ export default function AuthModal({
 										</div>
 									)}
 								</div>
-							</div>
+							</div> */}
 
 							<button 
-									className="cursor-pointer w-full rounded-xl h-[45px] text-violet-300 text-xl px-2 outline-none border-2 border-transparent hover:border-2 hover:border-purple-400 bg-neutral-800 transition-all duration-[100ms] active:scale-95 flex items-center justify-center gap-4"
-									type="button"
-									onClick={signInWithGoogle}
+								className="cursor-pointer w-full rounded-xl h-[60px] text-violet-300 text-xl px-2 outline-none border-2 border-transparent hover:border-2 hover:border-purple-400 bg-neutral-800 transition-all duration-[100ms] active:scale-95 flex items-center justify-center gap-4"
+								type="button"
+								onClick={signInWithGoogle}
 							>
-								<img src='/google_logo.png'
-									alt="Google logo"
-									className="w-6 h-6" 
-								/>
+								<div className="w-8 flex justify-center">
+									<img 
+										src='/google_logo.png'
+										alt="Google logo"
+										className="w-7 h-7" 
+									/>
+								</div>
 
-									<span> Continue with Google</span>
+									<span>Continue with Google</span>
 							</button>
+
+							{/* <button 
+								className="cursor-pointer w-full rounded-xl h-[60px] text-violet-300 text-xl px-2 outline-none border-2 border-transparent hover:border-2 hover:border-purple-400 bg-neutral-800 transition-all duration-[100ms] active:scale-95 flex items-center justify-center gap-4"
+								type="button"
+								onClick={signInWithGithub}
+							>
+								<div className="w-8 flex justify-center">
+									<img 
+										src='/github_logo.png'
+										alt="GitHub logo"
+										className="w-8 h-8" 
+									/>
+								</div>
+
+									<span>Continue with GitHub</span>
+							</button> */}
 						</>
 					) : (
 						<>
@@ -285,20 +325,20 @@ export default function AuthModal({
 									<div>
 										<span>Signed In As:<br /></span>
 										<span className="underline text-2xl break-all">
-											{user.userDetails?.email}
+											{userDetails?.email}
 										</span>
 									</div>
 
 									<div>
 										<span>Subscription Plan:<br /></span>
 										<b className={`text-2xl capitalize ${userDetails?.subscription_status === 'pro' && 'text-yellow-400'}`}>
-											{user.userDetails?.subscription_status}
+											{userDetails?.subscription_status}
 										</b>
 									</div>
 								</div>
 							</div>
 
-							<button className="cursor-pointer border px-10 py-2 text-xl rounded-2xl bg-violet-700 hover:scale-95 transition-[transform]" type="button" onClick={signOut}>
+							<button className="cursor-pointer border px-10 py-2 text-xl rounded-2xl bg-violet-700 hover:scale-95 transition-all" type="button" onClick={signOut}>
 								Sign Out
 							</button>
 						</>
