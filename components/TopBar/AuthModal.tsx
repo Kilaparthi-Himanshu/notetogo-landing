@@ -2,12 +2,15 @@
 
 import React, { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from "framer-motion";
-import { useLenis } from '../SmoothScroll';
+import { useLenis } from '../misc/SmoothScroll';
 import { X } from 'lucide-react';
 import TrafficLights from '../TrafficLights';
 import { supabase } from '@/lib/supabase/client';
-import { useAtomValue } from 'jotai';
+import { useAtom, useAtomValue } from 'jotai';
 import { userAtom, userDetailsAtom } from '@/lib/atoms';
+import { authModalAtom } from '@/app/atoms';
+import ModalRenderer from '../misc/ModalRenderer';
+import AccountInfo from './AccountInfo';
 
 export default function AuthModal({
 	setIsOpen
@@ -42,14 +45,6 @@ export default function AuthModal({
 	const user = useAtomValue(userAtom);
 	const userDetails = useAtomValue(userDetailsAtom);
 	const [actionType, setActionType] = useState<'signup' | 'signin'>('signup');
-
-	useEffect(() => {
-		console.log("USERRRRRRR: ", user);
-	}, [user]);
-
-	useEffect(() => {
-		console.log("USERRRRRRR DETAILSSSSS: ", userDetails);
-	}, [userDetails]);
 
 	const signUp = async (formData: FormData) => {
 		const email = formData.get("email") as string;
@@ -150,7 +145,7 @@ export default function AuthModal({
 
 	return (
 		<motion.div 
-			className='fixed z-9999 inset-0 bg-black/40 flex p-8'
+			className='fixed inset-0 bg-black/40 flex p-8 z-99999'
 			initial={{
 				opacity: 0
 			}}
@@ -185,7 +180,7 @@ export default function AuthModal({
 					<TrafficLights bgColor='#171717' fill='#171717' onClickClose={() => setIsOpen(false)} />
 				</div>
 
-				<motion.form
+				{!userDetails ? (<motion.form
 					// layout
 					className='w-[400px] h-max rounded-4xl corner-squircle p-4 flex flex-col items-center justify-center gap-10 text-white'
 					onSubmit={(e) => {
@@ -200,8 +195,6 @@ export default function AuthModal({
 				>
 					{/* <span className='text-4xl font-semibold'>{actionType === 'signin' ? 'Sign In' : 'Sign Up'}</span> */}
 					{!user &&  <span className='w-max text-4xl font-semibold'>Welcome to NoteToGo</span>}
-
-					 {!userDetails ? (
 						<>
 							{/* <div className='flex flex-col items-center justify-center w-full gap-6'>
 								<div className="w-full h-max flex flex-col gap-3">
@@ -318,33 +311,21 @@ export default function AuthModal({
 									<span>Continue with GitHub</span>
 							</button> */}
 						</>
-					) : (
-						<>
-							<div className="w-full text-center">
-								<div className="text-3xl text-wrap flex flex-col gap-6">
-									<div>
-										<span>Signed In As:<br /></span>
-										<span className="underline text-2xl break-all">
-											{userDetails?.email}
-										</span>
-									</div>
-
-									<div>
-										<span>Subscription Plan:<br /></span>
-										<b className={`text-2xl capitalize ${userDetails?.subscription_status === 'pro' && 'text-yellow-400'}`}>
-											{userDetails?.subscription_status}
-										</b>
-									</div>
-								</div>
-							</div>
-
-							<button className="cursor-pointer border px-10 py-2 text-xl rounded-2xl bg-violet-700 hover:scale-95 transition-all" type="button" onClick={signOut}>
-								Sign Out
-							</button>
-						</>
-					)}
 				</motion.form>
+				) : (
+					<AccountInfo userDetails={userDetails} signOut={signOut} />
+				)}
 			</motion.div>
 		</motion.div>
+	);
+}
+
+export function AuthModalRenderer() {
+	const [authModalOpen, setAuthModalOpen] = useAtom(authModalAtom);
+
+	return (
+		<ModalRenderer isOpen={authModalOpen}>
+			<AuthModal setIsOpen={setAuthModalOpen} />
+		</ModalRenderer>
 	);
 }

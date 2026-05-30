@@ -5,7 +5,7 @@ import Info from "@/components/Info";
 import Opening from "@/components/Opening";
 import { Pricing } from "@/components/Pricing";
 import RichTextShowcase from "@/components/RichTextShowcase";
-import SmoothScroll from "@/components/SmoothScroll";
+import SmoothScroll from "@/components/misc/SmoothScroll";
 import SyncShowcase from "@/components/SyncShowcase";
 import TopBar from "@/components/TopBar/TopBar";
 

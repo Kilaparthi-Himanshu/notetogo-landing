@@ -1,12 +1,12 @@
 'use client';
 
-import React, { useState } from 'react';
-import { AnimatePresence, motion } from "framer-motion";
-import ModalRenderer from '../misc/ModalRenderer';
-import AuthModal from './AuthModal';
+import React from 'react';
+import { motion } from "framer-motion";
+import { authModalAtom } from '@/app/atoms';
+import { useSetAtom } from 'jotai';
 
 export default function AccountSettings() {
-	const [authModalOpen, setAuthModalOpen] = useState(false);
+	const setAuthModalOpen = useSetAtom(authModalAtom);
 
 	return (
 		<>
@@ -47,10 +47,6 @@ export default function AccountSettings() {
 					Sign Out
 				</button>
 			</motion.div>
-
-			<ModalRenderer isOpen={authModalOpen}>
-				<AuthModal setIsOpen={setAuthModalOpen} />
-			</ModalRenderer>
 		</>
 	);
 }

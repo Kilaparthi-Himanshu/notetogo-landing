@@ -1,7 +1,7 @@
 'use client';
 
-import { navAtom } from "@/app/atoms";
-import { useAtom } from "jotai";
+import { authModalAtom, navAtom } from "@/app/atoms";
+import { useAtom, useSetAtom } from "jotai";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { RiArrowRightUpLongFill } from "react-icons/ri";
@@ -14,7 +14,7 @@ function TopBar() {
 	const [nav, setNav] = useAtom(navAtom);
 	const [visible, setVisible] = useState(true);
 	const [menuOpen, setMenuOpen] = useState(false);
-	const router = useRouter();
+	const setAuthModalOpen = useSetAtom(authModalAtom);
 
 	const menuRef = useRef<HTMLDivElement | null>(null);
 
@@ -143,16 +143,19 @@ function TopBar() {
 				<button>
 					<MdAccountCircle 
 						className="size-12 text-neutral-500 bg-white rounded-4xl text-center cursor-pointer select-none" 
-						onClick={() => setMenuOpen(!menuOpen)} 
+						// onClick={() => setMenuOpen(!menuOpen)} 
+						onClick={() => {
+							setAuthModalOpen(true)
+						}}
 						type="button"
 					/>
 				</button>
 
-				<AnimatePresence>
+				{/* <AnimatePresence>
 					{menuOpen && 
 						<AccountSettings />
 					}
-				</AnimatePresence>
+				</AnimatePresence> */}
 			</div>
 		</motion.div>
 	);

@@ -49,13 +49,13 @@ export async function POST(req: NextRequest) {
 
 		const { data: userDetails } = await supabaseForRls
 			.from('users')
-			.select("subscription_status")
+			.select("plan")
 			.eq("user_id", user.id)
 			.single();
 
 		console.log(user, userDetails);
 
-		if (userDetails?.subscription_status !== 'pro') {
+		if (userDetails?.plan !== 'pro') {
 			return NextResponse.json({ error: "Pro Subscription required" }, { status: 403, headers: corsHeaders() });
 		}
 

@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ReactQueryProvider } from "@/components/misc/ReactQueryProvider";
 import AuthSyncProvider from "@/components/misc/AuthSyncProvider";
+import { AuthModalRenderer } from "@/components/TopBar/AuthModal";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,6 +33,7 @@ export default function RootLayout({
         {/* <NavBar /> */}
 				{/* <ReactQueryProvider> */}
 					<AuthSyncProvider />
+					<AuthModalRenderer />
         	{children}
 				{/* </ReactQueryProvider> */}
       </body>

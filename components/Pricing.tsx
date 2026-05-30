@@ -5,14 +5,16 @@ import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import Link from 'next/link';
-import { useAtomValue } from 'jotai';
+import { useAtomValue, useSetAtom } from 'jotai';
 import { userAtom, userDetailsAtom } from '@/lib/atoms';
+import { authModalAtom } from '@/app/atoms';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export function Pricing() {
 	const user = useAtomValue(userAtom);
 	const userDetails = useAtomValue(userDetailsAtom);
+	const setAuthModalOpen = useSetAtom(authModalAtom);
 
 	return (
 		<section className='bg-change-pricing min-h-[100vh]'>
@@ -117,8 +119,11 @@ export function Pricing() {
 									</span>
 								</div>
 
-								<button className='w-full h-[60px] rounded-full bg-[#8B5CF6] text-white text-lg font-medium transition-all hover:scale-[1.02] hover:bg-[#7C3AED] cursor-pointer'>
-									{userDetails ?  '✓ Active Plan' : 'Upgrade to Pro'}
+								<button 
+									className='w-full h-[60px] rounded-full bg-[#8B5CF6] text-white text-lg font-medium transition-all hover:scale-[1.02] hover:bg-[#7C3AED] cursor-pointer'
+									onClick={() => (!userDetails || userDetails?.plan === "pro") && setAuthModalOpen(true)}
+								>
+									{userDetails?.plan === "pro" ?  '✓ Active Plan' : 'Upgrade to Pro'}
 								</button>
 
 								<div className='w-full h-[1px] bg-neutral-700' />
