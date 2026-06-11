@@ -28,9 +28,29 @@ export default function AuthSyncProvider() {
 			syncUser(data.session);
 		});
 
+		// Supabase auth events can be received from other contexts using the
+		// same Supabase project (e.g. our Chrome extension). Before syncing
+		// user state, verify that the event session matches this client's
+		// current session so we don't react to external sign-ins/sign-outs.
+
+		// Ignore auth events whose session does not match the session currently
+		// stored by this client. This prevents cross-context auth events
+		// (extension, other tabs, etc.) from triggering user sync logic.
 		const {
 			data: { subscription },
-		} = supabase.auth.onAuthStateChange((_event, session) => {
+		} = supabase.auth.onAuthStateChange(async (event, session) => {
+			const {
+				data: { session: localSession },
+			} = await supabase.auth.getSession();
+
+			if (
+				localSession?.access_token !== session?.access_token ||
+				localSession?.user?.id !== session?.user?.id
+			) {
+				// console.log("Ignoring external auth event");
+				return;
+			}
+
 			syncUser(session);
 		});
 

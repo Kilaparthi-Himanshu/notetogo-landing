@@ -4,6 +4,7 @@ import "./globals.css";
 import { ReactQueryProvider } from "@/components/misc/ReactQueryProvider";
 import AuthSyncProvider from "@/components/misc/AuthSyncProvider";
 import { AuthModalRenderer } from "@/components/TopBar/AuthModal";
+import DodoProvider from "@/components/misc/DodoProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,6 +35,7 @@ export default function RootLayout({
 				{/* <ReactQueryProvider> */}
 					<AuthSyncProvider />
 					<AuthModalRenderer />
+					<DodoProvider />
         	{children}
 				{/* </ReactQueryProvider> */}
       </body>

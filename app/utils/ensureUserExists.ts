@@ -18,6 +18,11 @@ export default async function ensureUserExists(session: Session): Promise<UserDe
 		.single();
 
 	if (error) {
+		console.error('UPSERT FAILED', {
+			userId: session.user.id,
+			email: session.user.email,
+			error,
+		});
 		throw error;
 	}
 

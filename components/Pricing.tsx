@@ -8,6 +8,7 @@ import Link from 'next/link';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { userAtom, userDetailsAtom } from '@/lib/atoms';
 import { authModalAtom } from '@/app/atoms';
+import { DodoPayments } from 'dodopayments-checkout';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -15,6 +16,37 @@ export function Pricing() {
 	const user = useAtomValue(userAtom);
 	const userDetails = useAtomValue(userDetailsAtom);
 	const setAuthModalOpen = useSetAtom(authModalAtom);
+
+	async function openCheckout() {
+		const response = await fetch("/api/dodo/create-checkout", { method: "POST" });
+		const data = await response.json();
+
+		if (!data.url) {
+			alert("Failer to create checkout");
+			return;
+		}
+
+		try {
+			await DodoPayments.Checkout.open({
+				checkoutUrl: data.url,
+			});
+		} catch (error) {
+			console.error("Failed to open checkout:", error);
+		}
+	}
+
+	const handleUpgrade = async () => {
+		if (!user) {
+			setAuthModalOpen(true);
+			return;
+		}
+
+		if (userDetails?.plan === "pro") {
+			return;
+		}
+
+		await openCheckout();
+	}
 
 	return (
 		<section className='bg-change-pricing min-h-[100vh]'>
@@ -121,7 +153,7 @@ export function Pricing() {
 
 								<button 
 									className='w-full h-[60px] rounded-full bg-[#8B5CF6] text-white text-lg font-medium transition-all hover:scale-[1.02] hover:bg-[#7C3AED] cursor-pointer'
-									onClick={() => (!userDetails || userDetails?.plan === "pro") && setAuthModalOpen(true)}
+									onClick={handleUpgrade}
 								>
 									{userDetails?.plan === "pro" ?  '✓ Active Plan' : 'Upgrade to Pro'}
 								</button>
@@ -153,7 +185,7 @@ export function Pricing() {
 
 						</div>
 					</div>
-</div>
+				</div>
 			</div>
 		</section>
 	);
