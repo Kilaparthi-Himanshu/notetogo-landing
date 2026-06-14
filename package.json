@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+		"db:types": "npx supabase gen types typescript --project-id nfkiulwbywnsxgfolwhp --schema public > database.types.ts"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",

@@ -1,6 +1,7 @@
 // app/billing/result/page.tsx
 
 import Link from "next/link";
+import BillingStatus from "@/components/misc/BillingStatus";
 
 export default async function BillingResultPage({
 	searchParams,
@@ -14,32 +15,6 @@ export default async function BillingResultPage({
 	const params = await searchParams;
 
 	const status = params.status;
-
-	// Add supabase polling logic to check if subscription statis turned to pro then show success screen
-
-	// <div className="w-screen h-screen bg-neutral-950 flex items-center justify-center p-6">
-	// 	<div className="max-w-[500px] text-center flex flex-col gap-6">
-	// 		<div className="text-7xl">🎉</div>
-	// 		<h1 className="text-4xl font-bold text-white">Payment Successful!</h1>
-	// 		<p className="text-neutral-400 text-lg">
-	// 			Thank you for supporting NoteToGo. Your subscription is being activated.
-	// 		</p>
-	// 		<div className="text-neutral-500">Redirecting in {seconds}s...</div>
-	// 	</div>
-	// </div>
-
-	// const router = useRouter(); 
-	// const [seconds, setSeconds] = useState(5); 
-	// useEffect(() => { 
-	// 	if (seconds === 0) { 
-	// 		router.push('/'); 
-	// 		return; 
-	// 	} 
-	// 	const timer = setTimeout(() => { 
-	// 		setSeconds(prev => prev - 1); 
-	// 	}, 1000); 
-	// 	return () => clearTimeout(timer); 
-	// }, [seconds]);
 
 	if (status === "failed") {
 		return (
@@ -67,20 +42,5 @@ export default async function BillingResultPage({
 		);
 	}
 
-	return (
-		<div className="w-screen h-screen bg-neutral-950 flex items-center justify-center p-6">
-			<div className="max-w-[500px] text-center flex flex-col gap-6">
-				<div className="text-7xl">⏳</div>
-
-				<h1 className="text-4xl font-bold text-white">
-					Payment Processing
-				</h1>
-
-				<p className="text-neutral-400 text-lg">
-					We're activating your NoteToGo Pro subscription.
-					This usually takes a few seconds.
-				</p>
-			</div>
-		</div>
-	);
+	return <BillingStatus />;
 }
