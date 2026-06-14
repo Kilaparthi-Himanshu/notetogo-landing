@@ -8,7 +8,7 @@ export default async function ensureUserExists(session: Session): Promise<UserDe
 		.upsert(
 			{
 				user_id: session.user.id,
-				email: session.user.email,
+				email: session.user.email!,
 			},
 			{
 				onConflict: 'user_id',
