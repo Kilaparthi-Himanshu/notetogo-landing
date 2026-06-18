@@ -1,9 +1,9 @@
-import { Database } from "@/database.types";
+import { TablesUpdate } from "@/database.types";
 import { supabaseAdmin } from "./supabase/admin";
 
 export async function updateSubscription(
 	userId: string,
-	data: Partial<Database["public"]["Tables"]["users"]["Update"]>
+	data: TablesUpdate<'users'>,
 ) {
 	/**
 	 * Uses the Supabase Service Role client instead of the normal

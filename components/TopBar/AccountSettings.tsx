@@ -1,52 +1,52 @@
-'use client';
+// 'use client';
 
-import React from 'react';
-import { motion } from "framer-motion";
-import { authModalAtom } from '@/app/atoms';
-import { useSetAtom } from 'jotai';
+// import React from 'react';
+// import { motion } from "framer-motion";
+// import { authModalAtom } from '@/app/atoms';
+// import { useSetAtom } from 'jotai';
 
-export default function AccountSettings() {
-	const setAuthModalOpen = useSetAtom(authModalAtom);
+// export default function AccountSettings() {
+// 	const setAuthModalOpen = useSetAtom(authModalAtom);
 
-	return (
-		<>
-			<motion.div 
-				initial={{
-					opacity: 0,
-					y: -10,
-					scale: 0.95
-				}}
-				animate={{
-					opacity: 1,
-					y: 0,
-					scale: 1
-				}}
-				exit={{
-					opacity: 0,
-					y: -10,
-					scale: 0.95
-				}}
-				transition={{
-					duration: 0.2,
-					ease: [0.22, 1, 0.36, 1]
-				}}
-				className="absolute right-10 top-14 w-[170px] h-max rounded-3xl corner-squircle shadow-lg overflow-hidden bg-white p-1 font-semibold flex flex-col items-center justify-center gap-1"
-			>
-				<button 
-					className="w-full h-[50px] flex items-center justify-center cursor-pointer hover:bg-neutral-300 transition-all rounded-2xl corner-squircle"
-				>
-					Account Settings
-				</button>
+// 	return (
+// 		<>
+// 			<motion.div 
+// 				initial={{
+// 					opacity: 0,
+// 					y: -10,
+// 					scale: 0.95
+// 				}}
+// 				animate={{
+// 					opacity: 1,
+// 					y: 0,
+// 					scale: 1
+// 				}}
+// 				exit={{
+// 					opacity: 0,
+// 					y: -10,
+// 					scale: 0.95
+// 				}}
+// 				transition={{
+// 					duration: 0.2,
+// 					ease: [0.22, 1, 0.36, 1]
+// 				}}
+// 				className="absolute right-10 top-14 w-[170px] h-max rounded-3xl corner-squircle shadow-lg overflow-hidden bg-white p-1 font-semibold flex flex-col items-center justify-center gap-1"
+// 			>
+// 				<button 
+// 					className="w-full h-[50px] flex items-center justify-center cursor-pointer hover:bg-neutral-300 transition-all rounded-2xl corner-squircle"
+// 				>
+// 					Account Settings
+// 				</button>
 
-				<button 
-					className="w-full h-[50px] flex items-center justify-center cursor-pointer hover:bg-neutral-300 transition-all rounded-2xl corner-squircle"
-					onClick={() => {
-						setAuthModalOpen(true)
-					}}
-				>
-					Sign Out
-				</button>
-			</motion.div>
-		</>
-	);
-}
+// 				<button 
+// 					className="w-full h-[50px] flex items-center justify-center cursor-pointer hover:bg-neutral-300 transition-all rounded-2xl corner-squircle"
+// 					onClick={() => {
+// 						setAuthModalOpen(true)
+// 					}}
+// 				>
+// 					Sign Out
+// 				</button>
+// 			</motion.div>
+// 		</>
+// 	);
+// }

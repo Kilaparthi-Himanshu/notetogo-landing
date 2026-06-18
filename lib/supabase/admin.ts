@@ -2,6 +2,7 @@
 // Uses the Supabase Service Role key and bypasses all RLS policies.
 // Intended for trusted backend operations such as webhooks, cron jobs,
 // admin actions, and internal server APIs. Never import into client code.
+import 'server-only';
 
 import { createClient } from "@supabase/supabase-js";
 import { Database } from "@/database.types";

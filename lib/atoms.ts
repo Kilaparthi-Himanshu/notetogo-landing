@@ -1,12 +1,8 @@
+import { Tables } from "@/database.types";
 import { User } from "@supabase/supabase-js";
 import { atom } from "jotai";
 
-export type UserDetailsType = {
-	created_at: string;
-	email: string;
-	plan: "free" | "pro";
-	user_id: string;
-}
+export type UserDetailsType = Tables<'users'>;
 
 export const userAtom = atom<User | null>(null);
 

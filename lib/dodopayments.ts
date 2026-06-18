@@ -1,3 +1,5 @@
+import 'server-only';
+
 import DodoPayments from "dodopayments";
 
 export const dodopayments = new DodoPayments({
