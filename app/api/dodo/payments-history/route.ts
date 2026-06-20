@@ -18,17 +18,17 @@ export async function GET() {
 
 	const { data: userDetails } = await supabase
 		.from('users')
-		.select('subscription_id')
+		.select('customer_id')
 		.eq('user_id', user.id)
 		.single();
 
-	if (!userDetails?.subscription_id) {
+	if (!userDetails?.customer_id) {
 		return NextResponse.json(null);
 	}
 
 	const payments = await
 		dodopayments.payments.list({
-			subscription_id: userDetails.subscription_id,
+			customer_id: userDetails.customer_id,
 		});
 	
 	return NextResponse.json(

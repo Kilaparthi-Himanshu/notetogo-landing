@@ -8,7 +8,7 @@ import { RiArrowRightUpLongFill } from "react-icons/ri";
 import Link from "next/link";
 import { MdAccountCircle } from "react-icons/md";
 import { useRouter } from "next/navigation";
-import AccountSettings from "./AccountSettings";
+// import AccountSettings from "./AccountSettings";
 
 function TopBar() {
 	const [nav, setNav] = useAtom(navAtom);

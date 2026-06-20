@@ -17,16 +17,6 @@ export default function AuthModal({
 }: {
 	setIsOpen: (open: boolean) => void;
 }) {
-	const lenis = useLenis();
-
-	useEffect(() => {
-		lenis?.stop();
-
-		return () => {
-			lenis?.start();
-		};
-	}, [lenis]);
-
 	useEffect(() => {
 		const handleKey = (e: KeyboardEvent) => {
 			if (e.key === "Escape") {
@@ -145,7 +135,8 @@ export default function AuthModal({
 
 	return (
 		<motion.div 
-			className='fixed inset-0 bg-black/40 flex p-8 z-99999'
+			className='fixed inset-0 bg-black/40 flex items-center justify-center p-8 z-99999'
+			onWheel={(e) => e.stopPropagation()}
 			initial={{
 				opacity: 0
 			}}
@@ -164,7 +155,7 @@ export default function AuthModal({
 			}}
 		>
 			<motion.div
-				className='w-full h-full rounded-4xl corner-squircle bg-neutral-900 relative flex items-center justify-center px-2'
+				className='w-full h-full rounded-4xl corner-squircle bg-neutral-900 relative flex items-center justify-center px-2 max-w-[1200px]'
 				onClick={(e) => e.stopPropagation()}
 			>
 				{/* <button 
@@ -322,6 +313,24 @@ export default function AuthModal({
 
 export function AuthModalRenderer() {
 	const [authModalOpen, setAuthModalOpen] = useAtom(authModalAtom);
+	const lenis = useLenis();
+
+	useEffect(() => {
+		if (authModalOpen) {
+			console.log("STOPPING LENIS");
+			lenis?.stop();
+			document.body.style.overflow = "hidden";
+		} else {
+			console.log("STARTING LENIS");
+			lenis?.start();
+			document.body.style.overflow = "";
+		}
+
+		return () => {
+			lenis?.start();
+			document.body.style.overflow = "";
+		};
+	}, [authModalOpen, lenis]);
 
 	return (
 		<ModalRenderer isOpen={authModalOpen}>

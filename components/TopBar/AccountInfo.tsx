@@ -35,7 +35,7 @@ export default function AccountInfo({
 					</div>
 				</div>
 
-				<div className='flex-2 p-6 text-white flex flex-col gap-6 overflow-y-auto'>
+				<div className='flex-2 p-6 text-white flex flex-col min-h-0 gap-6 overflow-y-auto'>
 					<p className='text-3xl font-semibold'>
 						{panel.charAt(0).toUpperCase() + panel.slice(1)} Settings
 					</p>

@@ -1,28 +1,37 @@
 'use client';
 
 import React, { useEffect, useState } from 'react'
+import { FaCheck, FaSpinner, FaXmark } from 'react-icons/fa6';
 
 export default function History() {
-	const [payments, setPayments] = useState([]);
+	const [payments, setPayments] = useState<null | []>(null);
 
 	useEffect(() => {
 		async function fetchDodoPaymentsData() {
 			const res = await fetch('/api/dodo/payments-history');
 			const data = await res.json();
 
-			if (!data || !res.ok) return;
+			if (!data || !res.ok) {
+				setPayments([]);
+				return;
+			}
 
-			console.log(data);
 			setPayments(data.payments.items);
 		}
 
 		fetchDodoPaymentsData();
 	}, []);
 
-	if (!payments.length) return <div className='text-white'>Loading...</div>
+	if (payments === null) {
+		return <div>Loading...</div>;
+	}
+
+	if (payments.length === 0) {
+		return <div>No payment history found.</div>;
+	}
 
 	return (
-		<div>
+		<div className='max-h-[500px] overflow-y-auto space-y-4 custom-scrollbar'>
 			{
 				payments.map((payment: any) => (
 					<div
@@ -32,7 +41,12 @@ export default function History() {
 						<div className="flex justify-between">
 							<div>
 								<p className="font-semibold">
-									₹{(payment.total_amount / 100).toFixed(2)}
+									{
+										new Intl.NumberFormat(undefined, {
+											style: 'currency',
+											currency: payment.currency,
+										}).format(payment.total_amount / 100)
+									}
 								</p>
 
 								<p className="text-sm text-neutral-400">
@@ -40,15 +54,21 @@ export default function History() {
 								</p>
 							</div>
 
-							<span className={`${payment.status === "succeeded" ? 'text-green-400' : 'text-red-400'}`}>
+							<span className={`${payment.status === "succeeded" ? 'text-green-400' :  payment.status === "cancelled" ? 'text-red-400' : 'text-yellow-400'} flex gap-2 items-center h-max`}>
 								{payment.status.charAt(0).toUpperCase() + payment.status.slice(1)}
+
+								{payment.status === "succeeded" ? <FaCheck /> : payment.status === "cancelled" ? <FaXmark /> : <FaSpinner />}
 							</span>
 						</div>
 
 						<div className="mt-4 text-sm text-neutral-400">
-							{payment.payment_method === "upi"
-								? "UPI"
-								: `${payment.card_network} •••• ${payment.card_last_four}`}
+							 {payment.payment_method === "upi" ? (
+									"UPI"
+								) : payment.card_network ? (
+									`${payment.card_network.charAt(0).toUpperCase() + payment.card_network.slice(1)} •••• ${payment.card_last_four ?? ""}`
+								) : (
+									payment.payment_method ?? "Unknown"
+								)}
 						</div>
 
 						{payment.invoice_url && (
