@@ -52,7 +52,7 @@ export const Features = () => {
 	});
 
 	return (
-		<section id="features" className='bg-change min-h-[100vh] max-md:min-h-max bg-neutral-900 flex features max-md:flex-col'>
+		<section id="features" className='bg-change min-h-[100vh] max-md:min-h-max bg-neutral-900 flex features max-md:flex-col max-md:gap-8'>
 			<div className='relative flex-1 flex items-center justify-center'>
 				<div className='max-md:hidden absolute bottom-0 right-0 h-[60%] w-[2px] bg-neutral-500 line' />
 
@@ -69,6 +69,8 @@ export const Features = () => {
 				</div>
 			</div>
 
+			<div className='border-b border-neutral-500 mx-10 md:hidden' />
+
 			<div className='relative flex-1 flex items-center justify-center'>
 				<div className='max-md:hidden absolute top-0 right-0 h-[60%] w-[2px] bg-neutral-500 line' />
 
@@ -84,6 +86,8 @@ export const Features = () => {
 					</span>
 				</div>
 			</div>
+
+			<div className='border-b border-neutral-500 mx-10 md:hidden' />
 
 			<div className='relative flex-1 flex items-center justify-center'>
 				<div className='relative flex-1 flex flex-col items-center justify-center px-16 gap-6 card'>

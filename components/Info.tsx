@@ -6,56 +6,65 @@ import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import { Note } from './Note';
 import NoteOptions from './NoteOptions';
+import { withMedia } from '@/lib/gsapMedia';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Info = () => {
   useGSAP(() => {
-    gsap.timeline({
-      scrollTrigger: {
-        trigger: '.bg-change',
-        start: 'top bottom',
-        end: 'top+=200 top',
-        scrub: true,
-        markers: false
-      }
-    })
-    .fromTo('.bg-change', {
-      backgroundColor: '#ffffff',
-      opacity: 0
-    }, {
-      opacity: 1,
-      backgroundColor: '#171717',
-      ease: 'power1.in'
-    });
+		const cleanup = withMedia(({ isMobile, isTablet, isDesktop }) => {
+			gsap.timeline({
+				scrollTrigger: {
+					trigger: '.bg-change',
+					start: 'top bottom',
+					end: 'top+=200 top',
+					scrub: true,
+					markers: false
+				}
+			})
+			.fromTo('.bg-change', {
+				backgroundColor: '#ffffff',
+				opacity: 0
+			}, {
+				opacity: 1,
+				backgroundColor: '#171717',
+				ease: 'power1.in'
+			});
 
-    gsap.from('.dark-note-container', {
-      scrollTrigger: {
-        trigger: '.info',
-        start: 'top center',
-        end: 'top top',
-        scrub: true,
-        markers: false
-      },
-      x: -800
-    });
+			gsap.from('.dark-note-container', {
+				scrollTrigger: {
+					trigger: '.info',
+					start: 'top center',
+					end: 'top top',
+					scrub: true,
+					markers: false
+				},
+				x: -800
+			}
+			// , {
+			// 	x: () => { if (isMobile) return 800; else return 0; }
+			// }
+		);
 
-    gsap.fromTo('.text-info', {
-      opacity: 0,
-      y: -200
-    }, {
-      scrollTrigger: {
-        trigger: '.info',
-        start: 'top top+=200',
-        // end: 'top top',
-        // scrub: true,
-        toggleActions: 'play none none none',
-        markers: false
-      },
-      duration: 1,
-      opacity: 1,
-      y: 0,
-    });
+			gsap.fromTo('.text-info', {
+				opacity: 0,
+				y: -200
+			}, {
+				scrollTrigger: {
+					trigger: '.info',
+					start: 'top top+=200',
+					// end: 'top top',
+					// scrub: true,
+					toggleActions: 'play none none none',
+					markers: false
+				},
+				duration: 1,
+				opacity: 1,
+				y: 0,
+			});
+		});
+
+    return cleanup;
   });
 
   // Horizontal scroll
@@ -119,8 +128,8 @@ const Info = () => {
           </div>
 
           {/* <div className='w-max'> */}
-            <div className='dark-note-container'>
-              <Note theme='dark' width={800} height={600} menuOpen={true}>
+            <div className='dark-note-container max-sm:scale-85 max-sm:mx-2'>
+              <Note theme='dark' className='w-[800px] h-[600px] max-sm:w-[400px] max-sm:h-[430px] max-md:w-[600px] max-md:h-[500px]' menuOpen={true}>
                 <NoteOptions theme='dark' />
               </Note>
             </div>

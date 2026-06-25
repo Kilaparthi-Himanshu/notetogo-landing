@@ -49,7 +49,7 @@ export function Pricing() {
 	}
 
 	return (
-		<section className='bg-change-pricing min-h-[100vh]'>
+		<section className='bg-change-pricing min-h-[100vh] max-sm:mb-10'>
 			<div className="w-full min-h-[50vh] bg-linear-to-b from-neutral-900 to-white gradient-ease-in-out" />
 
 			<div id="pricing" className='w-full min-h-[110vh] bg-white'>
@@ -72,7 +72,7 @@ export function Pricing() {
 						<div className='w-full flex max-lg:flex-col items-center justify-center gap-10'>
 
 							{/* Free */}
-							<div className='w-[380px] rounded-[60px] corner-squircle border border-neutral-200 bg-white p-8 flex flex-col gap-4 shadow-[0px_4px_20px_rgba(0,0,0,0.04)] transition-all duration-300 hover:-translate-y-2'>
+							<div className='w-[380px] rounded-[60px] corner-squircle border border-neutral-200 bg-white p-8 flex flex-col gap-4 shadow-[0px_4px_20px_rgba(0,0,0,0.04)] transition-all duration-300 hover:-translate-y-2 max-sm:w-full'>
 
 								<div className='flex flex-col gap-3'>
 									<span className='text-4xl font-bold text-neutral-900'>
@@ -124,7 +124,7 @@ export function Pricing() {
 							</div>
 
 							{/* Pro */}
-							<div className='relative w-[420px] rounded-[60px] corner-squircle border border-[#8B5CF6]/30 bg-neutral-900 p-9 flex flex-col gap-4 shadow-[0px_0px_30px_rgba(139,92,246,0.68)] scale-[1.03] transition-all duration-300 hover:-translate-y-2'>
+							<div className='relative w-[420px] rounded-[60px] corner-squircle border border-[#8B5CF6]/30 bg-neutral-900 p-8 flex flex-col gap-4 shadow-[0px_0px_30px_rgba(139,92,246,0.68)] scale-[1.03] transition-all duration-300 hover:-translate-y-2 max-sm:w-full'>
 
 								{/* Badge */}
 								<div className='absolute -top-5 left-1/2 -translate-x-1/2 px-5 py-2 rounded-full bg-[#8B5CF6] text-white text-sm font-medium shadow-lg'>

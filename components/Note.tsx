@@ -17,8 +17,6 @@ type NoteType = {
 
 export const Note = ({ 
 	id = "note",
-	width = 710,
-  height = 480, 
 	menuOpen = false,
 	className,
 	children,
@@ -47,8 +45,6 @@ export const Note = ({
 			className={`rounded-[15px] flex overflow-clip shadow-[0px_0px_6px_hsla(0,0%,0%,0.527)] relative ${className}`}
 			id={id} 
 			style={{
-				width: width,
-				height: height,
 				...glassBackgroundStyle,
 				...glassEffectBorderStyle,
 			}}

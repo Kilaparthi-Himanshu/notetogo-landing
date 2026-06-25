@@ -19,6 +19,18 @@ export default function SmoothScroll({
 	const [lenis, setLenis] = useState<Lenis | null>(null);
 
 	useEffect(() => {
+		const handleResize = () => {
+			ScrollTrigger.refresh();
+		};
+
+		window.addEventListener("resize", handleResize);
+
+		return () => {
+			window.removeEventListener("resize", handleResize);
+		};
+	}, []);
+
+	useEffect(() => {
 		gsap.registerPlugin(ScrollTrigger);
 
 		const lenisInstance = new Lenis({

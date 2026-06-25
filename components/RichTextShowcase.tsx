@@ -45,12 +45,12 @@ export default function RichTextShowcase() {
 	});
 
 	return (
-		<section className='rich-note-container min-h-[100vh] max-md:min-h-max bg-neutral-900 max-md:flex-col p-2 py-14 flex items-center justify-center'>
+		<section className='rich-note-container min-h-[100vh] max-md:min-h-max bg-neutral-900 max-xl:flex-col p-2 py-14 flex items-center justify-center max-xl:gap-20 max-xl:pb-10'>
 			<div className="w-full min-h-full flex items-center justify-center rich-text-info">
-				<CgToolbarBottom size={600} style={{color: "#c45533"}} className="absolute blur-lg opacity-50" />
+				<CgToolbarBottom size={600} style={{color: "#c45533"}} className="absolute blur-lg opacity-50 max-sm:scale-60" />
 
-				<div className="w-[500px] relative text-justify">
-					<span className='h-[120px] flex items-center justify-center text-5xl text-white font-bold text-center gap-4 underline relative'>
+				<div className="w-[500px] relative text-justify max-sm:px-2">
+					<span className='h-[120px] flex items-center justify-center text-5xl text-white font-bold text-center gap-4 underline relative max-sm:text-4xl'>
 						Rich Text Editing <CgToolbarBottom size={60} style={{color: "#c45533"}} className="pt-4" />
 
 						<span className="absolute top-0 left-0 px-3 py-1 text-sm rounded-full bg-orange-500/15 border border-orange-500/30 text-orange-300 font-medium">
@@ -58,7 +58,7 @@ export default function RichTextShowcase() {
 						</span>
 					</span>
 
-					<span className='h-[180px] text-xl text-white'>
+					<span className='h-[180px] text-xl text-white max-sm:text-[16px]'>
 						Create more than plain notes with powerful rich text editing. Format text, organize ideas, highlight important sections, and customize your notes with an intuitive editor designed to stay fast and distraction-free.
 
 						<br /><br />
@@ -74,9 +74,9 @@ export default function RichTextShowcase() {
 				</div>
 			</div>
 
-			<div className="w-full h-full relative ml-20 flex items-center justify-center">
+			<div className="w-full h-full relative xl:ml-20 flex items-center justify-center">
 				<div className="rich-note">
-					<Note theme="dark" width={530} height={450} className="">
+					<Note theme="dark" className="w-[530px] h-[450px] max-sm:w-[450px] max-sm:scale-76">
 						<div 
 							className="absolute top-[35px] w-full h-[calc(100%-35px)] text-black text-wrap break-words text-lg"
 							data-lenis-prevent

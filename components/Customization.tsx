@@ -59,12 +59,12 @@ export default function Customization() {
 	// }, [customColor]);
 
 	return (
-		<section className='customization-note-container min-h-[100vh] max-md:min-h-max bg-neutral-900 max-md:flex-col p-2 py-14 flex items-center justify-center'>
-			<div className="w-full h-full relative ml-20 customization-note">
+		<section className='customization-note-container min-h-[100vh] max-md:min-h-max bg-neutral-900 max-lg:flex-col-reverse max-xl:gap-20 p-2 py-14 flex items-center justify-center'>
+			<div className="w-full h-full relative xl:ml-20 customization-note max-xl:flex max-xl:justify-center max-xl:items-center max-sm:px-2">
 				<Poem />
 
 				<div>
-					<Note theme={theme} width={570} height={460} menuOpen={true} customColor={customColor} glassEffect={glassEffect} className="">
+					<Note theme={theme} menuOpen={true} customColor={customColor} glassEffect={glassEffect} className="w-[570px] h-[460px] max-sm:w-[500px] max-sm:scale-76">
 						<NoteOptions customColor={customColor} setCustomColor={setCustomColor} theme={theme} handleThemeChange={handleThemeChange} glassEffect={glassEffect} setGlassEffect={setGlassEffect} disabledOptions={["Pin", "Persist", "Password", "Sync", "Export"]} />
 
 						<div 
@@ -81,14 +81,14 @@ export default function Customization() {
 			</div>
 
 			<div className="customization-text-info w-full min-h-full flex items-center justify-center">
-				<Sparkles size={600} style={{color: "#9B5EFF"}} className="absolute blur-lg opacity-50" />
+				<Sparkles size={600} style={{color: "#9B5EFF"}} className="absolute blur-lg opacity-50 max-sm:scale-60" />
 
-				<div className="w-[500px] relative text-justify">
-					<span className='h-[120px] flex items-center justify-center text-5xl text-white font-bold text-center gap-4 underline'>
+				<div className="w-[500px] relative text-justify max-sm:px-2">
+					<span className='h-[120px] flex items-center justify-center text-5xl text-white font-bold text-center gap-4 underline max-sm:text-4xl'>
 						Customization <Sparkles size={60} style={{color: "#9B5EFF"}} className="pt-4" />
 					</span>
 
-					<span className='h-[180px] text-xl text-white'>
+					<span className='h-[180px] text-xl text-white max-sm:text-[16px]'>
 						Make NoteToGo truly yours with customizable themes, accent colors, transparency, and glass effects. Create a workspace that matches your style while staying clean, modern, and distraction-free.
 						<br /><br />
 
