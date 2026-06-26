@@ -31,7 +31,7 @@ export default function SubscriptionPanel({
 	return (
 		<motion.div 
 			layout
-			className='w-full rounded-[32px] corner-squircle bg-neutral-900 border border-neutral-700 p-6 flex flex-col gap-6 shadow-[0px_0px_20px_rgba(0,0,0,0.25)]'
+			className='w-full rounded-[32px] corner-squircle bg-neutral-900 border border-neutral-700 p-6 max-sm:p-4 flex flex-col gap-6 shadow-[0px_0px_20px_rgba(0,0,0,0.25)]'
 		>
 			{/* Tab Bar */}
 			<div className='w-max flex gap-2'>

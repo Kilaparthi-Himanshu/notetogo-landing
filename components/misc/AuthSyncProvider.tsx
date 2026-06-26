@@ -39,19 +39,24 @@ export default function AuthSyncProvider() {
 		const {
 			data: { subscription },
 		} = supabase.auth.onAuthStateChange(async (event, session) => {
-			const {
-				data: { session: localSession },
-			} = await supabase.auth.getSession();
+			queueMicrotask(async () => {
+				const {
+					data: { session: localSession },
+				} = await supabase.auth.getSession();
 
-			if (
-				localSession?.access_token !== session?.access_token ||
-				localSession?.user?.id !== session?.user?.id
-			) {
-				// console.log("Ignoring external auth event");
-				return;
-			}
+				console.log("Callback Session", session);
+				console.log("Fetched Session", localSession);
 
-			syncUser(session);
+				if (
+					localSession?.access_token !== session?.access_token ||
+					localSession?.user?.id !== session?.user?.id
+				) {
+					// console.log("Ignoring external auth event");
+					return;
+				}
+
+				await syncUser(session);
+			});
 		});
 
 		return () => subscription.unsubscribe();

@@ -135,7 +135,7 @@ export default function AuthModal({
 
 	return (
 		<motion.div 
-			className='fixed inset-0 bg-black/40 flex items-center justify-center p-8 z-99999'
+			className='fixed inset-0 bg-black/40 flex items-center justify-center p-8 max-sm:p-3 z-99999'
 			onWheel={(e) => e.stopPropagation()}
 			initial={{
 				opacity: 0
@@ -153,6 +153,7 @@ export default function AuthModal({
 				e.preventDefault();
 				setIsOpen(false);
 			}}
+			data-lenis-prevent
 		>
 			<motion.div
 				className='w-full h-full rounded-4xl corner-squircle bg-neutral-900 relative flex items-center justify-center px-2 max-w-[1200px]'
@@ -168,7 +169,7 @@ export default function AuthModal({
 				</button> */}
 
 				<div className='absolute top-2 right-2'>
-					<TrafficLights bgColor='#171717' fill='#171717' onClickClose={() => setIsOpen(false)} />
+					<TrafficLights bgColor='transparent' fill='transparent' onClickClose={() => setIsOpen(false)} />
 				</div>
 
 				{!userDetails ? (<motion.form
@@ -185,7 +186,7 @@ export default function AuthModal({
 					}}
 				>
 					{/* <span className='text-4xl font-semibold'>{actionType === 'signin' ? 'Sign In' : 'Sign Up'}</span> */}
-					{!user &&  <span className='w-max text-4xl font-semibold'>Welcome to NoteToGo</span>}
+					{!user &&  <span className='w-max text-4xl max-sm:text-3xl font-semibold'>Welcome to NoteToGo</span>}
 						<>
 							{/* <div className='flex flex-col items-center justify-center w-full gap-6'>
 								<div className="w-full h-max flex flex-col gap-3">
@@ -271,7 +272,7 @@ export default function AuthModal({
 							</div> */}
 
 							<button 
-								className="cursor-pointer w-full rounded-xl h-[60px] text-violet-300 text-xl px-2 outline-none border-2 border-transparent hover:border-2 hover:border-purple-400 bg-neutral-800 transition-all duration-[100ms] active:scale-95 flex items-center justify-center gap-4"
+								className="cursor-pointer w-full max-sm:w-max rounded-xl h-[60px] text-violet-300 text-xl px-2 outline-none border-2 border-transparent hover:border-2 hover:border-purple-400 bg-neutral-800 transition-all duration-[100ms] active:scale-95 flex items-center justify-center gap-4"
 								type="button"
 								onClick={signInWithGoogle}
 							>
@@ -317,11 +318,9 @@ export function AuthModalRenderer() {
 
 	useEffect(() => {
 		if (authModalOpen) {
-			console.log("STOPPING LENIS");
 			lenis?.stop();
 			document.body.style.overflow = "hidden";
 		} else {
-			console.log("STARTING LENIS");
 			lenis?.start();
 			document.body.style.overflow = "";
 		}

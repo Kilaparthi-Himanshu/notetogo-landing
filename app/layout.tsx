@@ -31,12 +31,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden max-sm:max-w-dvw`}
       >
-        {/* <NavBar /> */}
+				{/* <NavBar /> */}
 				{/* <ReactQueryProvider> */}
 					<AuthSyncProvider />
 					<AuthModalRenderer />
 					<DodoProvider />
-        	{children}
+					{children}
 				{/* </ReactQueryProvider> */}
       </body>
     </html>

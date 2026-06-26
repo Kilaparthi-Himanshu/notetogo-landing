@@ -16,9 +16,9 @@ export default function AccountInfo({
 
 	return (
 		<>
-			<div className='min-w-full min-h-full flex'>
-				<div className='flex-1 border-r border-neutral-400 py-10'>
-					<div className='w-full flex flex-col items-end justify-center gap-2 p-4 text-white font-semibold'>
+			<div className='w-full h-full flex max-sm:flex-col'>
+				<div className='sm:flex-1 sm:border-r max-sm:border-b border-neutral-400 sm:py-10 max-sm:pt-10'>
+					<div className='w-full flex sm:flex-col items-end justify-center gap-2 p-4 text-white font-semibold max-sm:h-max'>
 						<button 
 							className={`p-2 ${panel === "account" && 'bg-neutral-800'} rounded-3xl corner-squircle transition-all cursor-pointer w-[130px] text-center`}
 							onClick={() => setPanel('account')}
@@ -35,7 +35,7 @@ export default function AccountInfo({
 					</div>
 				</div>
 
-				<div className='flex-2 p-6 text-white flex flex-col min-h-0 gap-6 overflow-y-auto'>
+				<div className='flex-2 p-6 max-sm:p-4 text-white flex flex-col min-h-0 gap-6 overflow-y-auto'>
 					<p className='text-3xl font-semibold'>
 						{panel.charAt(0).toUpperCase() + panel.slice(1)} Settings
 					</p>

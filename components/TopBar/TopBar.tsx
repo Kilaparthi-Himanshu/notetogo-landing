@@ -77,7 +77,7 @@ function TopBar() {
 				ease: [0.22, 1, 0.36, 1]
 			}}
 		>
-			<div className="w-[600px] h-[50px] bg-white shadow-[0px_0px_6px_hsla(0,0%,0%,0.2)] rounded-4xl corner-squircle flex p-2 gap-2">	
+			<div className="w-[600px] h-[50px] bg-white shadow-[0px_0px_6px_hsla(0,0%,0%,0.2)] rounded-4xl corner-squircle flex p-2 gap-2 max-sm:hidden">	
 				<button 
 					className={`bg-neutral-100 rounded-4xl corner-squircle px-2 min-w-max w-full text-center text-black text-md cursor-pointer transition-all ${nav === "home" && "bg-neutral-300"}`}
 					onClick={() => {
@@ -139,7 +139,7 @@ function TopBar() {
 				</Link>
 			</div>
 
-			<div ref={menuRef} className="absolute right-5 ">
+			<div ref={menuRef} className="absolute right-5 max-sm:mt-10">
 				<button>
 					<MdAccountCircle 
 						className="size-12 text-neutral-500 bg-white rounded-4xl text-center cursor-pointer select-none" 

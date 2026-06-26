@@ -8,15 +8,15 @@ export default function AccountPanel({
 	signOut: () => void;
 }) {
 	return (
-		<div className='w-full rounded-[32px] corner-squircle bg-neutral-900 border border-neutral-700 p-6 flex flex-col gap-6 shadow-[0px_0px_20px_rgba(0,0,0,0.25)]'>
+		<div className='w-full rounded-[32px] corner-squircle bg-neutral-900 border border-neutral-700 p-6 max-sm:p-4 flex flex-col gap-6 shadow-[0px_0px_20px_rgba(0,0,0,0.25)]'>
 			{/* Profile */}
 			<div className='flex items-center gap-4'>
-				<div className='size-16 rounded-full bg-violet-600 flex items-center justify-center text-3xl font-bold'>
+				<div className='size-16 max-sm:size-12 rounded-full bg-violet-600 flex items-center justify-center text-3xl font-bold'>
 					{userDetails?.email?.[0]?.toUpperCase()}
 				</div>
 
 				<div className='flex flex-col'>
-					<span className='text-2xl font-semibold break-all'>
+					<span className='text-2xl max-sm:text-[16px] font-semibold break-all'>
 						{userDetails?.email}
 					</span>
 
