@@ -324,16 +324,12 @@ export function AuthModalRenderer() {
 	// then replace the current URL without triggering a page reload.
 	// Using this because router.replace(pathname, { scroll: false }); dosent work after OAuth redirect
 	const closeModal = () => {
-		const params = new URLSearchParams(searchParams);
+    const params = new URLSearchParams(searchParams);
+    params.delete("modal");
+    const url = params.toString() ? `${pathname}?${params}` : pathname;
 
-		params.delete("modal");
-
-		const url = params.toString()
-			? `${pathname}?${params}`
-			: pathname;
-
-		router.push(url, { scroll: false });
-	};
+    window.history.replaceState(null, '', url);
+  };
 
 	// Delay rendering until after the component mounts.
 	// This component depends on client-only state (useSearchParams, Supabase auth,
