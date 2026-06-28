@@ -346,7 +346,12 @@ export function AuthModalRenderer() {
 
 	return (
 		<ModalRenderer isOpen={authModalOpen}>
-			<AuthModal onClose={() => {console.log(pathname); console.log(window.location.href); router.replace(pathname, { scroll: false })}} />
+			<AuthModal onClose={() => {
+				setTimeout(() => {
+						router.replace(pathname || '/', { scroll: false });
+					}, 0);
+				}}
+			/>
 		</ModalRenderer>
 	);
 }
