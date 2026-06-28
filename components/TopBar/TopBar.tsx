@@ -80,7 +80,7 @@ function TopBar() {
 		>
 			<div className="w-[600px] h-[50px] bg-white shadow-[0px_0px_6px_hsla(0,0%,0%,0.2)] rounded-4xl corner-squircle flex p-2 gap-2 max-sm:hidden">	
 				<button 
-					className={`bg-neutral-100 rounded-4xl corner-squircle px-2 min-w-max w-full text-center text-black text-md cursor-pointer transition-all ${nav === "home" && "bg-neutral-300"}`}
+					className={`bg-neutral-100 rounded-4xl corner-squircle px-2 min-w-max w-full text-center text-black text-md cursor-pointer transition-all hover:bg-neutral-300`}
 					onClick={() => {
 						document
 							.getElementById("home")
@@ -93,7 +93,7 @@ function TopBar() {
 				</button>
 
 				<button 
-					className={`bg-neutral-100 rounded-4xl corner-squircle px-2 min-w-max w-full text-center text-black text-md cursor-pointer transition-all ${nav === "features" && "bg-neutral-300"}`}
+					className={`bg-neutral-100 rounded-4xl corner-squircle px-2 min-w-max w-full text-center text-black text-md cursor-pointer transition-all hover:bg-neutral-300`}
 					onClick={() => {
 						document
 							.getElementById("features")
@@ -106,7 +106,7 @@ function TopBar() {
 				</button>
 
 				<button 
-					className={`bg-neutral-100 rounded-4xl corner-squircle px-2 min-w-max w-full text-center text-black text-md cursor-pointer transition-all ${nav === "pricing" && "bg-neutral-300"}`}
+					className={`bg-neutral-100 rounded-4xl corner-squircle px-2 min-w-max w-full text-center text-black text-md cursor-pointer transition-all hover:bg-neutral-300`}
 					onClick={() => {
 						document
 							.getElementById("pricing")
@@ -119,7 +119,7 @@ function TopBar() {
 				</button>
 
 				<button 
-					className={`bg-neutral-100 rounded-4xl corner-squircle px-2 min-w-max w-full text-center text-black text-md cursor-pointer transition-all ${nav === "contact" && "bg-neutral-300"}`}
+					className={`bg-neutral-100 rounded-4xl corner-squircle px-2 min-w-max w-full text-center text-black text-md cursor-pointer transition-all hover:bg-neutral-300`}
 					onClick={() => {
 						document
 							.getElementById("footer")
@@ -132,7 +132,7 @@ function TopBar() {
 				</button>
 
 				<Link 
-					className={`bg-neutral-100 rounded-4xl corner-squircle px-2 min-w-max w-full text-center text-black text-md cursor-pointer transition-all flex items-center justify-center gap-2`}
+					className={`bg-neutral-100 rounded-4xl corner-squircle px-2 min-w-max w-full text-center text-black text-md cursor-pointer transition-all flex items-center justify-center gap-2 hover:bg-neutral-300`}
 					href={"https://chromewebstore.google.com/detail/notetogo-save-notes-passw/aacbmfpcgjlmefmhhbafimdaefpifkjk"}
 					target="_blank"
 				>
