@@ -13,15 +13,15 @@ import AccountInfo from './AccountInfo';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 export default function AuthModal({
-	setIsOpen
+	onClose
 }: {
-	setIsOpen: (open: boolean) => void;
+	onClose: () => void;
 }) {
 	useEffect(() => {
 		const handleKey = (e: KeyboardEvent) => {
 			if (e.key === "Escape") {
 				(document.activeElement as HTMLElement)?.blur();
-				setIsOpen(false);
+				onClose();
 			}
 		}
 
@@ -151,7 +151,7 @@ export default function AuthModal({
 			}}
 			onClick={(e) => {
 				e.preventDefault();
-				setIsOpen(false);
+				onClose();
 			}}
 			data-lenis-prevent
 		>
@@ -169,7 +169,7 @@ export default function AuthModal({
 				</button> */}
 
 				<div className='absolute top-2 right-2'>
-					<TrafficLights bgColor='transparent' fill='transparent' onClickClose={() => setIsOpen(false)} />
+					<TrafficLights bgColor='transparent' fill='transparent' onClickClose={onClose} />
 				</div>
 
 				{!userDetails ? (<motion.form
@@ -337,7 +337,7 @@ export function AuthModalRenderer() {
 
 	return (
 		<ModalRenderer isOpen={authModalOpen}>
-			<AuthModal setIsOpen={() => router.replace(pathname, { scroll: false })} />
+			<AuthModal onClose={() => {console.log(pathname); console.log(window.location.href); router.replace(pathname, { scroll: false })}} />
 		</ModalRenderer>
 	);
 }
