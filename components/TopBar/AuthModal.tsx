@@ -320,6 +320,13 @@ export function AuthModalRenderer() {
 	const authModalOpen = searchParams.get("modal") === "account";
 	const lenis = useLenis();
 
+	// Delay rendering until after the component mounts.
+	// This component depends on client-only state (useSearchParams, Supabase auth,
+	// browser URL) which can differ between the server render and the initial
+	// client render, leading to hydration mismatches.
+	const [mounted, setMounted] = useState(false);
+	useEffect(() => setMounted(true), []);
+
 	useEffect(() => {
 		if (authModalOpen) {
 			lenis?.stop();
@@ -334,6 +341,8 @@ export function AuthModalRenderer() {
 			document.body.style.overflow = "";
 		};
 	}, [authModalOpen, lenis]);
+
+	if (!mounted) return null;
 
 	return (
 		<ModalRenderer isOpen={authModalOpen}>
