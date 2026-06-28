@@ -320,9 +320,10 @@ export function AuthModalRenderer() {
 	const authModalOpen = searchParams.get("modal") === "account";
 	const lenis = useLenis();
 
-	// Build a new query string with the modal param removed,
-	// then replace the current URL without triggering a page reload.
-	// Using this because router.replace(pathname, { scroll: false }); dosent work after OAuth redirect
+	// After returning from Supabase OAuth, Next.js App Router sometimes fails to
+	// update the URL via router.replace(). Updating the browser history directly
+	// reliably removes the query param, and useSearchParams() reacts to the change,
+	// closing the modal.
 	const closeModal = () => {
     const params = new URLSearchParams(searchParams);
     params.delete("modal");
