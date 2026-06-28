@@ -5,6 +5,7 @@ import { ReactQueryProvider } from "@/components/misc/ReactQueryProvider";
 import AuthSyncProvider from "@/components/misc/AuthSyncProvider";
 import { AuthModalRenderer } from "@/components/TopBar/AuthModal";
 import DodoProvider from "@/components/misc/DodoProvider";
+import { Suspense } from "react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,7 +35,12 @@ export default function RootLayout({
 				{/* <NavBar /> */}
 				{/* <ReactQueryProvider> */}
 					<AuthSyncProvider />
-					<AuthModalRenderer />
+					// AuthModalRenderer uses useSearchParams(), which is only available on the client.
+					// Wrapping it in Suspense allows the rest of the layout to be prerendered while
+					// deferring the modal until the browser has access to the current URL.
+					<Suspense fallback={null}>
+						<AuthModalRenderer />
+					</Suspense>
 					<DodoProvider />
 					{children}
 				{/* </ReactQueryProvider> */}
