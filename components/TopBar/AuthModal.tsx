@@ -332,7 +332,7 @@ export function AuthModalRenderer() {
 			? `${pathname}?${params}`
 			: pathname;
 
-		router.replace(url, { scroll: false });
+		router.push(url, { scroll: false });
 	};
 
 	// Delay rendering until after the component mounts.
