@@ -67,7 +67,7 @@ export default function SyncShowcase() {
 	});
 
 	return (
-		<section className='notes-container min-h-[100vh] max-md:min-h-max bg-neutral-900 p-2 py-14 flex max-lg:flex-col-reverse max-xl:gap-20 items-center justify-center max-xl:pb-40'>
+		<section className='notes-container min-h-[100vh] max-md:min-h-max bg-neutral-900 p-2 py-14 flex max-lg:flex-col-reverse max-xl:gap-20 items-center justify-center max-lg:pb-40'>
 			<div className="w-full h-full relative xl:ml-20 max-xl:flex max-xl:items-center max-xl:justify-center">
 				<div className="xl:absolute bottom-2 left-2 note-1">
 					<Note className="w-[500px] h-[300px] border-2 border-red-400 max-sm:scale-76">

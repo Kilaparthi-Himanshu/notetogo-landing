@@ -1,7 +1,7 @@
 'use client';
 
-import { authModalAtom, navAtom } from "@/app/atoms";
-import { useAtom, useSetAtom } from "jotai";
+import { navAtom } from "@/app/atoms";
+import { useAtom } from "jotai";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { RiArrowRightUpLongFill } from "react-icons/ri";
@@ -11,10 +11,11 @@ import { useRouter } from "next/navigation";
 // import AccountSettings from "./AccountSettings";
 
 function TopBar() {
+	const router = useRouter();
+	
 	const [nav, setNav] = useAtom(navAtom);
 	const [visible, setVisible] = useState(true);
 	const [menuOpen, setMenuOpen] = useState(false);
-	const setAuthModalOpen = useSetAtom(authModalAtom);
 
 	const menuRef = useRef<HTMLDivElement | null>(null);
 
@@ -143,9 +144,10 @@ function TopBar() {
 				<button>
 					<MdAccountCircle 
 						className="size-12 text-neutral-500 bg-white rounded-4xl text-center cursor-pointer select-none" 
-						// onClick={() => setMenuOpen(!menuOpen)} 
 						onClick={() => {
-							setAuthModalOpen(true)
+							router.push("/?modal=account", {
+								scroll: false,
+							});
 						}}
 						type="button"
 					/>

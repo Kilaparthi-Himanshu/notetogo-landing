@@ -7,37 +7,40 @@ import ScrollTrigger from 'gsap/ScrollTrigger';
 import Link from 'next/link';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { userAtom, userDetailsAtom } from '@/lib/atoms';
-import { authModalAtom } from '@/app/atoms';
 import { DodoPayments } from 'dodopayments-checkout';
+import { useRouter } from 'next/navigation';
 
 gsap.registerPlugin(ScrollTrigger);
 
+export async function openCheckout() {
+	const response = await fetch("/api/dodo/create-checkout", { method: "POST" });
+	const data = await response.json();
+
+	if (!data.url) {
+		alert("Failer to create checkout");
+		return;
+	}
+
+	try {
+		await DodoPayments.Checkout.open({
+			checkoutUrl: data.url,
+		});
+	} catch (error) {
+		console.error("Failed to open checkout:", error);
+	}
+}
+
 export function Pricing() {
+	const router = useRouter();
+
 	const user = useAtomValue(userAtom);
 	const userDetails = useAtomValue(userDetailsAtom);
-	const setAuthModalOpen = useSetAtom(authModalAtom);
-
-	async function openCheckout() {
-		const response = await fetch("/api/dodo/create-checkout", { method: "POST" });
-		const data = await response.json();
-
-		if (!data.url) {
-			alert("Failer to create checkout");
-			return;
-		}
-
-		try {
-			await DodoPayments.Checkout.open({
-				checkoutUrl: data.url,
-			});
-		} catch (error) {
-			console.error("Failed to open checkout:", error);
-		}
-	}
 
 	const handleUpgrade = async () => {
 		if (!user) {
-			setAuthModalOpen(true);
+			router.push("/?modal=account", {
+				scroll: false,
+			});
 			return;
 		}
 

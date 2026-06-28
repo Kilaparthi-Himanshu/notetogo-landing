@@ -27,10 +27,8 @@ const Opening = () => {
 				}
 			});
 
-			tl.from('#light-note', {
-				scale: () => {
-					if (isMobile) return 4.5; else return 3.2;
-				},
+			tl.to('#light-note', {
+				scale: 1,
 				ease: 'power1.inOut',
 				force3D: false,
 			});
@@ -45,7 +43,7 @@ const Opening = () => {
 
   return (
     <section id="home" className='w-[100dvw] h-screen flex items-center justify-center bg-white'>
-      <Note id='light-note' className='mx-2 w-[710px] max-w-screen aspect-[710/480]' >
+      <Note id='light-note' className='mx-2 w-[710px] max-w-screen aspect-[710/480] max-sm:scale-[4.5] sm:scale-[3.2]' >
         <div className='absolute top-1/2 left-1/2 -translate-[50%]'>
           <span className='text-[60px] max-lg:text-[40px] max-md:text-[30px] max-sm:text-[14px] flex items-center text-box-space gap-3 max-sm:gap-1' id='title'>
 						NoteToGo

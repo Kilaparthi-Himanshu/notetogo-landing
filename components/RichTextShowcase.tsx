@@ -45,7 +45,7 @@ export default function RichTextShowcase() {
 	});
 
 	return (
-		<section className='rich-note-container min-h-[100vh] max-md:min-h-max bg-neutral-900 max-xl:flex-col p-2 py-14 flex items-center justify-center max-xl:gap-20 max-xl:pb-10'>
+		<section className='rich-note-container min-h-[100vh] max-md:min-h-max bg-neutral-900 max-lg:flex-col p-2 py-14 flex items-center justify-center max-xl:gap-20 max-lg:pb-20'>
 			<div className="w-full min-h-full flex items-center justify-center rich-text-info">
 				<CgToolbarBottom size={600} style={{color: "#c45533"}} className="absolute blur-lg opacity-50 max-sm:scale-60" />
 

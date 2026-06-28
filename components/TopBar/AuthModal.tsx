@@ -6,11 +6,11 @@ import { useLenis } from '../misc/SmoothScroll';
 import { X } from 'lucide-react';
 import TrafficLights from '../TrafficLights';
 import { supabase } from '@/lib/supabase/client';
-import { useAtom, useAtomValue } from 'jotai';
+import { useAtomValue } from 'jotai';
 import { userAtom, userDetailsAtom } from '@/lib/atoms';
-import { authModalAtom } from '@/app/atoms';
 import ModalRenderer from '../misc/ModalRenderer';
 import AccountInfo from './AccountInfo';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 export default function AuthModal({
 	setIsOpen
@@ -96,7 +96,7 @@ export default function AuthModal({
 		const { error } = await supabase.auth.signInWithOAuth({
 			provider: "google",
 			options: {
-				redirectTo: `${window.location.origin}/auth/callback`
+				redirectTo: `${window.location.origin}/auth/callback?next=/?modal=account`
 			}
 		});
 
@@ -313,7 +313,11 @@ export default function AuthModal({
 }
 
 export function AuthModalRenderer() {
-	const [authModalOpen, setAuthModalOpen] = useAtom(authModalAtom);
+	const router = useRouter();
+	const pathname = usePathname();
+
+	const searchParams = useSearchParams();
+	const authModalOpen = searchParams.get("modal") === "account";
 	const lenis = useLenis();
 
 	useEffect(() => {
@@ -333,7 +337,7 @@ export function AuthModalRenderer() {
 
 	return (
 		<ModalRenderer isOpen={authModalOpen}>
-			<AuthModal setIsOpen={setAuthModalOpen} />
+			<AuthModal setIsOpen={() => router.replace(pathname, { scroll: false })} />
 		</ModalRenderer>
 	);
 }

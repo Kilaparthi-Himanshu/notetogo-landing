@@ -11,7 +11,7 @@ export function initializeDodo() {
 			: "live",
 		displayType: "overlay",
 		onEvent: (event) => {
-			console.log("EVENT: ", event);
+			// console.log("EVENT: ", event);
 
 			switch (event.event_type) {
 				case "checkout.opened":
@@ -25,7 +25,7 @@ export function initializeDodo() {
 					break;
 
 				case "checkout.redirect":
-					console.log("payment complete");
+					// console.log("payment complete");
 					break;
 			}
 		},

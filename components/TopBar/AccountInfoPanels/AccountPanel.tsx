@@ -1,3 +1,4 @@
+import { openCheckout } from '@/components/Pricing';
 import { UserDetailsType } from '@/lib/atoms';
 
 export default function AccountPanel({
@@ -34,26 +35,37 @@ export default function AccountPanel({
 					Subscription
 				</span>
 
-				<div className='flex items-center justify-between bg-neutral-800 rounded-3xl corner-squircle px-5 py-4'>
-					<div className='flex flex-col'>
-						<span className='text-xl font-semibold'>
-							Current Plan
-						</span>
+				<div className='bg-neutral-800 rounded-3xl corner-squircle px-5 py-4 flex flex-col gap-4'>
+					<div className='flex items-center justify-between'>
+						<div className='flex flex-col'>
+							<span className='text-xl font-semibold'>
+								Current Plan
+							</span>
 
-						<span className='text-neutral-400 text-sm'>
-							Manage your NoteToGo subscription
-						</span>
+							<span className='text-neutral-400 text-sm'>
+								Manage your NoteToGo subscription
+							</span>
+						</div>
+
+						<div
+							className={`px-4 py-2 rounded-full text-sm font-semibold border ${
+								userDetails.plan === "pro"
+									? "bg-yellow-500/10 border-yellow-500/30 text-yellow-300"
+									: "bg-neutral-700 border-neutral-600 text-neutral-300"
+							}`}
+						>
+							{userDetails.plan.toUpperCase()}
+						</div>
 					</div>
 
-					<div
-						className={`px-4 py-2 rounded-full text-sm font-semibold border ${
-							userDetails?.plan === 'pro'
-								? 'bg-yellow-500/10 border-yellow-500/30 text-yellow-300'
-								: 'bg-neutral-700 border-neutral-600 text-neutral-300'
-						}`}
-					>
-						{userDetails?.plan?.toUpperCase()}
-					</div>
+					{userDetails.plan === "free" && (
+						<button
+							onClick={openCheckout}
+							className="h-[48px] rounded-2xl bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:brightness-110 active:scale-[0.98] transition-all font-semibold cursor-pointer corner-squircle"
+						>
+							Upgrade to Pro ✨
+						</button>
+					)}
 				</div>
 			</div>
 

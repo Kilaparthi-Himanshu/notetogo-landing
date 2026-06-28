@@ -10,7 +10,7 @@ import { UserDetailsType } from "@/lib/atoms";
 export async function fetchUserDetails() {
 	const { data: sessionData, error: sessionError } = await supabase.auth.getSession();
 
-	console.log("SESSION DATA: ", sessionData);
+	// console.log("SESSION DATA: ", sessionData);
 	if (sessionError || !sessionData.session) {
 		return { session: null, userDetails: null };
 	}
