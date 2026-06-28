@@ -320,6 +320,21 @@ export function AuthModalRenderer() {
 	const authModalOpen = searchParams.get("modal") === "account";
 	const lenis = useLenis();
 
+	// Build a new query string with the modal param removed,
+	// then replace the current URL without triggering a page reload.
+	// Using this because router.replace(pathname, { scroll: false }); dosent work after OAuth redirect
+	const closeModal = () => {
+		const params = new URLSearchParams(searchParams);
+
+		params.delete("modal");
+
+		const url = params.toString()
+			? `${pathname}?${params}`
+			: pathname;
+
+		router.replace(url, { scroll: false });
+	};
+
 	// Delay rendering until after the component mounts.
 	// This component depends on client-only state (useSearchParams, Supabase auth,
 	// browser URL) which can differ between the server render and the initial
@@ -346,16 +361,7 @@ export function AuthModalRenderer() {
 
 	return (
 		<ModalRenderer isOpen={authModalOpen}>
-			<AuthModal onClose={() => {
-					console.log("Before:", window.location.href);
-
-					router.replace(pathname, { scroll: false });
-
-					setTimeout(() => {
-						console.log("After:", window.location.href);
-					}, 0);
-				}}
-			/>
+			<AuthModal onClose={closeModal} />
 		</ModalRenderer>
 	);
 }
