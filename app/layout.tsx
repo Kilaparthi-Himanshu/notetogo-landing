@@ -35,9 +35,9 @@ export default function RootLayout({
 				{/* <NavBar /> */}
 				{/* <ReactQueryProvider> */}
 					<AuthSyncProvider />
-					// AuthModalRenderer uses useSearchParams(), which is only available on the client.
-					// Wrapping it in Suspense allows the rest of the layout to be prerendered while
-					// deferring the modal until the browser has access to the current URL.
+					{/* AuthModalRenderer uses useSearchParams(), which is only available on the client.
+					Wrapping it in Suspense allows the rest of the layout to be prerendered while
+					deferring the modal until the browser has access to the current URL. */}
 					<Suspense fallback={null}>
 						<AuthModalRenderer />
 					</Suspense>
