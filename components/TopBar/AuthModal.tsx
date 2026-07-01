@@ -272,7 +272,7 @@ export default function AuthModal({
 							</div> */}
 
 							<button 
-								className="cursor-pointer w-full max-sm:w-max rounded-xl h-[60px] text-violet-300 text-xl px-2 outline-none border-2 border-transparent hover:border-2 hover:border-purple-400 bg-neutral-800 transition-all duration-[100ms] active:scale-95 flex items-center justify-center gap-4"
+								className="cursor-pointer w-full max-sm:w-max rounded-3xl corner-squircle h-[60px] text-violet-300 text-xl px-2 outline-none border-2 border-transparent hover:border-2 hover:border-purple-400 bg-neutral-800 transition-all duration-[100ms] active:scale-95 flex items-center justify-center gap-4"
 								type="button"
 								onClick={signInWithGoogle}
 							>
