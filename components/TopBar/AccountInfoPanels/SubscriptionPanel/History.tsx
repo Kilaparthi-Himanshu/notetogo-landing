@@ -31,7 +31,7 @@ export default function History() {
 	}
 
 	return (
-		<div className='max-h-[500px] overflow-y-auto space-y-4 custom-scrollbar'>
+		<div className='overflow-y-auto space-y-4 custom-scrollbar'>
 			{
 				payments.map((payment: any) => (
 					<div

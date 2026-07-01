@@ -9,7 +9,7 @@ export default function Manage({
 	dodoSubscriptionData: any;
 }) {
 	return (
-		<div className='flex flex-col gap-6'>
+		<div className='flex flex-col gap-6 overflow-y-auto custom-scrollbar'>
 			<div className='flex flex-col gap-3'>
 				<span className='text-lg text-neutral-400'>
 					Subscription

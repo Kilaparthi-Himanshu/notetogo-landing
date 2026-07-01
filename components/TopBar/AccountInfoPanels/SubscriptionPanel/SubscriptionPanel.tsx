@@ -31,7 +31,7 @@ export default function SubscriptionPanel({
 	return (
 		<motion.div 
 			layout
-			className='w-full rounded-[32px] corner-squircle bg-neutral-900 border border-neutral-700 p-6 max-sm:p-4 flex flex-col gap-6 shadow-[0px_0px_20px_rgba(0,0,0,0.25)]'
+			className='w-full rounded-[32px] corner-squircle bg-neutral-900 border border-neutral-700 p-6 max-sm:p-4 flex flex-col gap-6 shadow-[0px_0px_20px_rgba(0,0,0,0.25)] min-h-0'
 		>
 			{/* Tab Bar */}
 			<div className='w-max flex gap-2'>
@@ -54,6 +54,7 @@ export default function SubscriptionPanel({
 						animate={{ opacity: 1 }}
 						exit={{ opacity: 0 }}
 						transition={{ duration: 0.2 }}
+						className="overflow-y-auto custom-scrollbar"
 					>
 						<Manage userDetails={userDetails} dodoSubscriptionData={dodoSubscriptionData} />
 					</motion.div>
@@ -64,6 +65,7 @@ export default function SubscriptionPanel({
 						animate={{ opacity: 1 }}
 						exit={{ opacity: 0 }}
 						transition={{ duration: 0.2 }}
+						className="overflow-y-auto custom-scrollbar"
 					>
 						<History />
 					</motion.div>

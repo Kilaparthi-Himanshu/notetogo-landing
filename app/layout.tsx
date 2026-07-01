@@ -56,7 +56,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="overflow-x-hidden">
+    <html lang="en" className="overflow-x-hidden custom-scrollbar-2">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden max-sm:max-w-dvw`}
       >

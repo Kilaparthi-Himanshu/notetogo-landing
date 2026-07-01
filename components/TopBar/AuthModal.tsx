@@ -156,7 +156,7 @@ export default function AuthModal({
 			data-lenis-prevent
 		>
 			<motion.div
-				className='w-full h-full rounded-4xl corner-squircle bg-neutral-900 relative flex items-center justify-center px-2 max-w-[1200px]'
+				className='w-full h-full rounded-4xl corner-squircle bg-neutral-900 relative flex items-center justify-center px-2 max-w-[1200px] overflow-hidden'
 				onClick={(e) => e.stopPropagation()}
 			>
 				{/* <button 

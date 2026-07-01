@@ -223,10 +223,10 @@ ol li::marker {
 
 /* globals.css */
 
-.custom-scrollbar {
+/* .custom-scrollbar {
   scrollbar-width: thin;
   scrollbar-color: rgb(82 82 91) transparent;
-}
+} */
 
 .custom-scrollbar::-webkit-scrollbar {
   width: 8px;
@@ -243,4 +243,21 @@ ol li::marker {
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: rgb(113 113 122);
+}
+
+.custom-scrollbar-2::-webkit-scrollbar {
+  width: 12px;
+}
+
+.custom-scrollbar-2::-webkit-scrollbar-track {
+  background: rgb(110, 110, 110);
+}
+
+.custom-scrollbar-2::-webkit-scrollbar-thumb {
+  background: rgba(183, 174, 226);
+  border-radius: 9999px;
+}
+
+.custom-scrollbar-2::-webkit-scrollbar-thumb:hover {
+  background: rgb(182, 148, 209);
 }
