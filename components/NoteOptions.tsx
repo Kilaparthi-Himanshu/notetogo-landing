@@ -4,6 +4,7 @@ import { useAtom } from "jotai";
 import { Lock, Pin, Repeat, Sparkles } from "lucide-react";
 import { PiExport } from "react-icons/pi";
 import { IoMdCloudOutline } from "react-icons/io";
+import { CgToolbarBottom } from "react-icons/cg";
 
 type NoteOptionsType = {
 	theme?: string,
@@ -13,6 +14,8 @@ type NoteOptionsType = {
 	setCustomColor?: (color: string) => void,
 	glassEffect?: boolean;
 	setGlassEffect?: (glass: boolean) => void;
+	toolbar?: boolean;
+	setToolbar?: (toolbar: boolean) => void;
 	disabledOptions?: string[],
 }
 
@@ -24,6 +27,8 @@ const NoteOptions = ({
 	setCustomColor,
 	glassEffect = true,
 	setGlassEffect,
+	toolbar = true,
+	setToolbar,
 	disabledOptions = [],
 }: NoteOptionsType) => {
 	const isDisabled = (name: string) => {
@@ -141,6 +146,18 @@ const NoteOptions = ({
 						<div>
 								<div title="Glass" className="pinsContainer">
 										<Sparkles style={{color: glassEffect ? "#9B5EFF" : theme === "light" ? "black" : "white"}}/>
+								</div>
+						</div>
+				</div>
+
+				<div className={`dropdownCard ${theme} ${isDisabled("Toolbar") && "blur-sm pointer-events-none"}`} onClick={() => setToolbar && setToolbar(!toolbar)}>
+						<div className={`${theme === "light" ? "text-black" : "text-white"}`}>
+								Toolbar
+						</div>
+
+						<div>
+								<div title="Toolbar" className="pinsContainer">
+										<CgToolbarBottom size={20} style={{color: toolbar ? "#c45533" : theme === "light" ? "black" : "white"}}/>
 								</div>
 						</div>
 				</div>
