@@ -86,7 +86,7 @@ export default function Customization() {
 		<section className='customization-note-container min-h-[100vh] max-md:min-h-max bg-neutral-900 max-lg:flex-col-reverse max-xl:gap-20 p-2 py-14 flex items-center justify-center relative overflow-hidden'>
 
 			{/* ghost watermark, consistent with the rest of the site */}
-			<span className="pointer-events-none select-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[18vw] font-black tracking-tighter text-neutral-800/20 whitespace-nowrap">
+			<span className="pointer-events-none select-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[18vw] font-black text-neutral-800/20 whitespace-nowrap">
 				STYLE
 			</span>
 
