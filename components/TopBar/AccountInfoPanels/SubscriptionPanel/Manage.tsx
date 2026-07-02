@@ -1,13 +1,32 @@
 import { UserDetailsType } from '@/lib/atoms';
-import React from 'react'
+import React from 'react';
+import { LuArrowUpRight } from "react-icons/lu";
 
 export default function Manage({
 	userDetails,
-	dodoSubscriptionData
 }: {
 	userDetails: UserDetailsType;
-	dodoSubscriptionData: any;
 }) {
+	const openCustomerPortal = async () => {
+		const res = await fetch('/api/dodo/customer-portal', {
+			method: "POST"
+		});
+
+		const data = await res.json();
+
+		if (!res.ok) {
+			alert("Unable to open customer portal.");
+			return;
+		}
+
+		if (!data.url) {
+			alert("Customer portal is unavailable.");
+			return;
+		}
+
+		window.open(data.url, "_blank", "noopener,noreferrer");
+	}
+
 	return (
 		<div className='flex flex-col gap-6 overflow-y-auto custom-scrollbar'>
 			<div className='flex flex-col gap-3'>
@@ -118,6 +137,34 @@ export default function Manage({
 							Dodo Payments
 						</span>
 					</div>
+				</div>
+			</div>
+
+			<div className="flex flex-col gap-3">
+				<span className="text-lg text-neutral-400">
+					Billing Management
+				</span>
+
+				<div className="bg-neutral-800 rounded-3xl p-5 flex flex-col gap-4 corner-squircle">
+					<p className="text-neutral-400 text-sm">
+						Manage your payment method, download invoices,
+						update billing information, or cancel your
+						subscription securely through Dodo Payments.
+					</p>
+
+					<button
+						onClick={openCustomerPortal}
+						className="w-full p-2 bg-violet-400 enabled:hover:bg-violet-500 transition-all rounded-2xl corner-squircle cursor-pointer font-bold flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none"
+						disabled={!userDetails.customer_id}
+					>
+						Open Customer Portal <LuArrowUpRight size={20} />
+					</button>
+
+					{!userDetails.customer_id && (
+						<p className="text-sm text-gray-500">
+							The Customer Portal will become available after your first Pro subscription.
+						</p>
+					)}
 				</div>
 			</div>
 		</div>

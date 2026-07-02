@@ -107,7 +107,7 @@ export default function AccountPanel({
 				</span>
 
 				<button
-					className='w-full h-[55px] rounded-2xl bg-red-500/10 border border-red-500/30 text-red-300 font-semibold hover:bg-red-500/20 transition-all cursor-pointer corner-squircle'
+					className='w-full h-[55px] rounded-2xl bg-red-500/10 border border-red-500/30 text-red-300 font-bold hover:bg-red-500/20 transition-all cursor-pointer corner-squircle'
 					type='button'
 					onClick={signOut}
 				>

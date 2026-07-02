@@ -80,7 +80,7 @@ function TopBar() {
 		>
 			<div className="w-[600px] h-[50px] bg-white shadow-[0px_0px_6px_hsla(0,0%,0%,0.2)] rounded-4xl corner-squircle flex p-2 gap-2 max-sm:hidden">	
 				<button 
-					className={`bg-neutral-100 rounded-4xl isolate corner-squircle px-2 min-w-max w-full text-center text-black text-md cursor-pointer transition-all hover:text-white relative overflow-hidden before:absolute before:inset-0 before:bg-purple-500 before:origin-bottom before:scale-y-0 before:transition-transform before:duration-300 before:z-[-1] hover:before:origin-top hover:before:scale-y-100`}
+					className={`bg-neutral-100 rounded-4xl isolate corner-squircle px-2 min-w-max w-full text-center text-black text-md cursor-pointer transition-all hover:text-white relative overflow-hidden before:absolute before:inset-0 before:bg-violet-400 before:origin-bottom before:scale-y-0 before:transition-transform before:duration-300 before:z-[-1] hover:before:origin-top hover:before:scale-y-100`}
 					onClick={() => {
 						document
 							.getElementById("home")
@@ -93,7 +93,7 @@ function TopBar() {
 				</button>
 
 				<button 
-					className={`bg-neutral-100 rounded-4xl isolate corner-squircle px-2 min-w-max w-full text-center text-black text-md cursor-pointer transition-all hover:text-white relative overflow-hidden before:absolute before:inset-0 before:bg-purple-500 before:origin-bottom before:scale-y-0 before:transition-transform before:duration-300 before:z-[-1] hover:before:origin-top hover:before:scale-y-100`}
+					className={`bg-neutral-100 rounded-4xl isolate corner-squircle px-2 min-w-max w-full text-center text-black text-md cursor-pointer transition-all hover:text-white relative overflow-hidden before:absolute before:inset-0 before:bg-violet-400 before:origin-bottom before:scale-y-0 before:transition-transform before:duration-300 before:z-[-1] hover:before:origin-top hover:before:scale-y-100`}
 					onClick={() => {
 						document
 							.getElementById("features")
@@ -106,7 +106,7 @@ function TopBar() {
 				</button>
 
 				<button 
-					className={`bg-neutral-100 rounded-4xl isolate corner-squircle px-2 min-w-max w-full text-center text-black text-md cursor-pointer transition-all hover:text-white relative overflow-hidden before:absolute before:inset-0 before:bg-purple-500 before:origin-bottom before:scale-y-0 before:transition-transform before:duration-300 before:z-[-1] hover:before:origin-top hover:before:scale-y-100`}
+					className={`bg-neutral-100 rounded-4xl isolate corner-squircle px-2 min-w-max w-full text-center text-black text-md cursor-pointer transition-all hover:text-white relative overflow-hidden before:absolute before:inset-0 before:bg-violet-400 before:origin-bottom before:scale-y-0 before:transition-transform before:duration-300 before:z-[-1] hover:before:origin-top hover:before:scale-y-100`}
 					onClick={() => {
 						document
 							.getElementById("pricing")
@@ -119,7 +119,7 @@ function TopBar() {
 				</button>
 
 				<button 
-					className={`bg-neutral-100 rounded-4xl isolate corner-squircle px-2 min-w-max w-full text-center text-black text-md cursor-pointer transition-all hover:text-white relative overflow-hidden before:absolute before:inset-0 before:bg-purple-500 before:origin-bottom before:scale-y-0 before:transition-transform before:duration-300 before:z-[-1] hover:before:origin-top hover:before:scale-y-100`}
+					className={`bg-neutral-100 rounded-4xl isolate corner-squircle px-2 min-w-max w-full text-center text-black text-md cursor-pointer transition-all hover:text-white relative overflow-hidden before:absolute before:inset-0 before:bg-violet-400 before:origin-bottom before:scale-y-0 before:transition-transform before:duration-300 before:z-[-1] hover:before:origin-top hover:before:scale-y-100`}
 					onClick={() => {
 						document
 							.getElementById("footer")
@@ -132,7 +132,7 @@ function TopBar() {
 				</button>
 
 				<Link 
-					className={`bg-neutral-100 rounded-4xl isolate corner-squircle px-2 min-w-max w-full text-center text-black text-md cursor-pointer transition-all hover:text-white relative overflow-hidden before:absolute before:inset-0 before:bg-purple-500 before:origin-bottom before:scale-y-0 before:transition-transform before:duration-300 before:z-[-1] hover:before:origin-top hover:before:scale-y-100 flex items-center justify-center gap-2 hover:bg-neutral-300`}
+					className={`bg-neutral-100 rounded-4xl isolate corner-squircle px-2 min-w-max w-full text-center text-black text-md cursor-pointer transition-all hover:text-white relative overflow-hidden before:absolute before:inset-0 before:bg-violet-400 before:origin-bottom before:scale-y-0 before:transition-transform before:duration-300 before:z-[-1] hover:before:origin-top hover:before:scale-y-100 flex items-center justify-center gap-2`}
 					href={"https://chromewebstore.google.com/detail/notetogo-save-notes-passw/aacbmfpcgjlmefmhhbafimdaefpifkjk"}
 					target="_blank"
 				>
@@ -143,7 +143,7 @@ function TopBar() {
 			<div ref={menuRef} className="absolute right-5 max-sm:mt-10">
 				<button>
 					<MdAccountCircle 
-						className="size-12 text-neutral-500 bg-white hover:text-purple-500 transition-all rounded-4xl text-center cursor-pointer select-none" 
+						className="size-12 text-neutral-500 bg-white hover:text-violet-400 transition-all rounded-4xl text-center cursor-pointer select-none" 
 						onClick={() => {
 							router.push("/?modal=account", {
 								scroll: false,

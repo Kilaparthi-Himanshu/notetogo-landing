@@ -12,21 +12,6 @@ export default function SubscriptionPanel({
 	userDetails: UserDetailsType;
 }) {
 	const [tab, setTab] = useState<'manage' | 'history'>('manage');
-	const [dodoSubscriptionData, setDodoSubscriptionData] = useState(null);
-
-	// useEffect(() => {
-	// 	async function fetchDodoSubscriptionData() {
-	// 		const res = await fetch('/api/dodo/subscription');
-	// 		const data = await res.json();
-
-	// 		if (!data || !res.ok) return;
-
-	// 		console.log(data);
-	// 		setDodoSubscriptionData(data.subscription);
-	// 	}
-
-	// 	fetchDodoSubscriptionData();
-	// }, []);
 
 	return (
 		<motion.div 
@@ -56,7 +41,7 @@ export default function SubscriptionPanel({
 						transition={{ duration: 0.2 }}
 						className="overflow-y-auto custom-scrollbar"
 					>
-						<Manage userDetails={userDetails} dodoSubscriptionData={dodoSubscriptionData} />
+						<Manage userDetails={userDetails} />
 					</motion.div>
 				) : (
 					<motion.div
