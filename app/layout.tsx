@@ -6,6 +6,7 @@ import AuthSyncProvider from "@/components/misc/AuthSyncProvider";
 import { AuthModalRenderer } from "@/components/TopBar/AuthModal";
 import DodoProvider from "@/components/misc/DodoProvider";
 import { Suspense } from "react";
+import DebugButtons from "@/components/misc/DebugButtons";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -60,6 +61,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden max-sm:max-w-dvw`}
       >
+				{/* <DebugButtons /> */}
 				{/* <NavBar /> */}
 				{/* <ReactQueryProvider> */}
 					<AuthSyncProvider />

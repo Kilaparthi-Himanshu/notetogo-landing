@@ -17,7 +17,7 @@ export async function openCheckout() {
 	const data = await response.json();
 
 	if (!data.url) {
-		alert("Failer to create checkout");
+		alert("Failed to create checkout");
 		return;
 	}
 
