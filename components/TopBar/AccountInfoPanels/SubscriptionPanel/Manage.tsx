@@ -1,5 +1,6 @@
+import Spinner from '@/components/misc/Spinner';
 import { UserDetailsType } from '@/lib/atoms';
-import React from 'react';
+import React, { useState } from 'react';
 import { LuArrowUpRight } from "react-icons/lu";
 
 export default function Manage({
@@ -7,7 +8,11 @@ export default function Manage({
 }: {
 	userDetails: UserDetailsType;
 }) {
+	const [loading, setLoading] = useState(false);
+
 	const openCustomerPortal = async () => {
+		setLoading(true);
+
 		const res = await fetch('/api/dodo/customer-portal', {
 			method: "POST"
 		});
@@ -25,6 +30,8 @@ export default function Manage({
 		}
 
 		window.open(data.url, "_blank", "noopener,noreferrer");
+
+		setLoading(false);
 	}
 
 	return (
@@ -154,10 +161,10 @@ export default function Manage({
 
 					<button
 						onClick={openCustomerPortal}
-						className="w-full p-2 bg-violet-400 enabled:hover:bg-violet-500 transition-all rounded-2xl corner-squircle cursor-pointer font-bold flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none"
-						disabled={!userDetails.customer_id}
+						className="w-full p-2 bg-violet-400 enabled:hover:bg-violet-500 transition-all rounded-2xl corner-squircle cursor-pointer font-bold flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none h-[40px]"
+						disabled={!userDetails.customer_id || loading}
 					>
-						Open Customer Portal <LuArrowUpRight size={20} />
+						{loading ? <Spinner /> : <>Open Customer Portal <LuArrowUpRight size={20} /></>}
 					</button>
 
 					{!userDetails.customer_id && (
