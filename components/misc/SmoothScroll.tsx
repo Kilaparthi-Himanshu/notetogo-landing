@@ -1,9 +1,7 @@
 'use client';
 
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useLayoutEffect, useState } from 'react';
 import Lenis from '@studio-freight/lenis';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 export const LenisContext = createContext<Lenis | null>(null);
 
@@ -19,69 +17,40 @@ export default function SmoothScroll({
 	const [lenis, setLenis] = useState<Lenis | null>(null);
 
 	useEffect(() => {
-		const handleResize = () => {
-			ScrollTrigger.refresh();
-		};
-
-		window.addEventListener("resize", handleResize);
-
-		return () => {
-			window.removeEventListener("resize", handleResize);
-		};
-	}, []);
-
-	useEffect(() => {
-		gsap.registerPlugin(ScrollTrigger);
-
-		const lenisInstance = new Lenis({
+		const lenis = new Lenis({
 			duration: 1.2,
 			smoothWheel: true,
 		});
 
-		setLenis(lenisInstance);
+		setLenis(lenis);
+
+		const params = new URLSearchParams(window.location.search);
+		const target = params.get("scroll");
+
+		if (target) {
+			requestAnimationFrame(() => {
+				const el = document.getElementById(target);
+
+				if (el) {
+					lenis.scrollTo(el, {
+						immediate: true,
+					});
+				}
+			});
+  }
 
 		let rafId: number;
 
-		function raf(time: number) {
-			lenisInstance.raf(time);
+		const raf = (time: number) => {
+			lenis.raf(time);
 			rafId = requestAnimationFrame(raf);
-		}
+		};
 
 		rafId = requestAnimationFrame(raf);
 
-		lenisInstance.on('scroll', ScrollTrigger.update);
-
-		ScrollTrigger.scrollerProxy(document.body, {
-			scrollTop(value) {
-				if (value !== undefined) {
-					lenisInstance.scrollTo(value);
-				}
-
-				return window.scrollY;
-			},
-
-			getBoundingClientRect() {
-				return {
-					top: 0,
-					left: 0,
-					width: window.innerWidth,
-					height: window.innerHeight,
-				};
-			},
-
-			pinType: document.body.style.transform
-				? 'transform'
-				: 'fixed',
-		});
-
-		ScrollTrigger.refresh();
-
 		return () => {
 			cancelAnimationFrame(rafId);
-
-			lenisInstance.destroy();
-
-			ScrollTrigger.getAll().forEach((t) => t.kill());
+			lenis.destroy();
 		};
 	}, []);
 

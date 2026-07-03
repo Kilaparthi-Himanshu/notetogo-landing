@@ -132,7 +132,7 @@ function TopBar() {
 				</button>
 
 				<Link 
-					className={`bg-neutral-100 rounded-4xl isolate corner-squircle px-2 min-w-max w-full text-center text-black text-md cursor-pointer transition-all hover:text-white relative overflow-hidden before:absolute before:inset-0 before:bg-violet-400 before:origin-bottom before:scale-y-0 before:transition-transform before:duration-300 before:z-[-1] hover:before:origin-top hover:before:scale-y-100 flex items-center justify-center gap-2`}
+					className={`bg-neutral-100 rounded-4xl isolate corner-squircle px-2 min-w-max w-full text-center text-black text-md cursor-pointer transition-all hover:text-white relative overflow-hidden before:absolute before:inset-0 before:bg-violet-400 before:origin-bottom before:scale-y-0 before:transition-transform before:duration-300 before:z-[-1] hover:before:origin-top hover:before:scale-y-100 flex items-center justify-center gap-2 border-2 border-violet-300`}
 					href={"https://chromewebstore.google.com/detail/notetogo-save-notes-passw/aacbmfpcgjlmefmhhbafimdaefpifkjk"}
 					target="_blank"
 				>
