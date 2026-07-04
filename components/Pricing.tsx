@@ -113,15 +113,17 @@ export function Pricing() {
 
 									<div>✓ 2 cloud synced notes</div>
 
+									<div>✓ Basic rich text editing</div>
+
+									<div>✓ Font styles & customization</div>
+
 									<div>✓ Themes & custom colors</div>
 
 									<div>✓ Pin notes</div>
 
-									<div>✓ Persist notes between sessions</div>
-
 									<div>✓ Password protection</div>
 
-									<div>✓ Lightweight & distraction-free</div>
+									<div>✓ Persist notes between sessions</div>
 
 								</div>
 							</div>
@@ -173,7 +175,7 @@ export function Pricing() {
 
 									<div>✓ Glass effect</div>
 
-									<div>✓ Rich text editor</div>
+									<div>✓ Advanced rich text editor</div>
 
 									<div>✓ Images, lists & formatting tools</div>
 
