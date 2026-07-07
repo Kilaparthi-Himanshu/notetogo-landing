@@ -22,6 +22,10 @@ export const metadata: Metadata = {
   title: "NoteToGo",
 	description: "Capture, organize, and sync your notes seamlessly across devices with NoteToGo.",
 
+	verification: {
+    google: "ZA0kirO_i1Ledj3RkOLWy35fBNPj_eHXq3D0IU_kl58"
+  },
+
 	icons: {
 		icon: "/icon.ico",
 		apple: "/icon.ico",
