@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-		"db:types": "npx supabase gen types typescript --project-id nfkiulwbywnsxgfolwhp --schema public > database.types.ts"
+    "db:types": "npx supabase gen types typescript --project-id nfkiulwbywnsxgfolwhp --schema public > database.types.ts"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
@@ -33,6 +33,7 @@
     "@tiptap/react": "^3.23.4",
     "@tiptap/starter-kit": "^3.23.4",
     "@toolwind/corner-shape": "^0.0.8-3",
+    "@vercel/analytics": "^2.0.1",
     "dodopayments": "^2.36.0",
     "dodopayments-checkout": "^1.9.4",
     "easing-gradients": "^0.0.3",

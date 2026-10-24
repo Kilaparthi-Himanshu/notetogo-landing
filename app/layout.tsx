@@ -7,6 +7,7 @@ import { AuthModalRenderer } from "@/components/TopBar/AuthModal";
 import DodoProvider from "@/components/misc/DodoProvider";
 import { Suspense } from "react";
 import DebugButtons from "@/components/misc/DebugButtons";
+import { Analytics } from "@vercel/analytics/next"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -78,6 +79,7 @@ export default function RootLayout({
 					<DodoProvider />
 					{children}
 				{/* </ReactQueryProvider> */}
+				<Analytics />
       </body>
     </html>
   );
